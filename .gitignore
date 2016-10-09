@@ -2,7 +2,7 @@
 *.out
 *.log
 *.aux
-auto/*
-_minted*/*
+*/auto/*
+*/_minted*/*
 *.gz
 *.prv
