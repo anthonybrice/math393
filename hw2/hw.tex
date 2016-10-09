@@ -1,0 +1,409 @@
+\documentclass{abrice}
+
+\title{Math 393: Homework 2}
+\author{Anthony Brice}
+
+\usepackage{amsthm}
+
+\usepackage{tikz}
+\usetikzlibrary{shapes.geometric}
+
+\newcommand{\GL}{\text{GL}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\R}{\mathbb{R}}
+
+\begin{document}
+\maketitle
+\section{Exercise 4.6}
+
+\begin{align*}
+  & \langle 0 \rangle = \{ 0 \} \\
+  & \langle 1 \rangle = \mathbb{Z}_{12} \\
+  & \langle 2 \rangle = \{ 0, 2, 4, 6, 8, 10 \} \\
+  & \langle 3 \rangle = \{ 0, 3, 6, 9 \} \\
+  & \langle 4 \rangle = \{ 0, 4, 8 \} \\
+  & \langle 5 \rangle = \mathbb{Z}_{12} \\
+  & \langle 6 \rangle = \{ 0, 6 \} \\
+  & \langle 7 \rangle = \mathbb{Z}_{12} \\
+  & \langle 8 \rangle = \langle 4 \rangle \\
+  & \langle 9 \rangle = \langle 3 \rangle \\
+  & \langle 10 \rangle = \langle 2 \rangle \\
+  & \langle 11 \rangle = \mathbb{Z}_{12}\, .
+\end{align*}
+
+Figures \ref{fig:4.8a}--\ref{fig:4.8b} exhibit each visually.
+
+\begin{figure}[htb]
+  \centering
+  \begin{tikzpicture}
+    \node[minimum size=12em, rotate=15, regular polygon, regular polygon
+    sides=12,color=black] (a) {};
+
+    \draw[thin,black] (a.corner 1) -- (a.corner 2) -- (a.corner 3) -- (a.corner
+    4) -- (a.corner 5) -- (a.corner 6) -- (a.corner 7) -- (a.corner 8) --
+    (a.corner 9) -- (a.corner 10) -- (a.corner 11) -- (a.corner 12) -- (a.corner 1);
+
+    \foreach \x in {1,2,...,12}
+    \fill (a.corner \x) circle[radius=1.5pt];
+
+    \foreach \anchor/\placement/\x in {corner 1/above/0, corner 2/above left/11, corner
+      3/above left/10, corner 4/left/9, corner 5/below left/8, corner 6/below left/7,
+      corner 7/below/6, corner 8/below right/5, corner 9/below right/4, corner
+      10/right/3, corner 11/above right/2, corner 12/above right/1}
+    \draw[shift=(a.\anchor)] plot coordinates{(0,0)}
+    node[\placement] {\scriptsize{$\x$}};
+  \end{tikzpicture}
+  \caption{A visual representation of $\mathbb{Z}_{12} = \langle 1 \rangle =
+    \langle 5 \rangle = \langle 7 \rangle = \langle 11 \rangle$.}
+  \label{fig:4.8a}
+\end{figure}
+
+\begin{figure}[htb]
+  \centering
+  \begin{tikzpicture}
+    \node[minimum size=12em, rotate=30, regular polygon, regular polygon
+    sides=6,color=black] (a) {};
+
+    \draw[thin,black] (a.corner 1) -- (a.corner 2) -- (a.corner 3) -- (a.corner
+    4) -- (a.corner 5) -- (a.corner 6) -- (a.corner 1);
+
+    \foreach \anchor/\placement/\x in {corner 1/above/0, corner 2/above left/10, corner
+      3/below left/8, corner 4/below/6, corner 5/below right/4, corner 6/above right/2}
+    \draw[shift=(a.\anchor)] plot coordinates{(0,0)}
+    node[\placement] {\scriptsize{$\x$}};
+
+    \foreach \x in {1,2,...,6}
+    \fill (a.corner \x) circle[radius=1.5pt];
+  \end{tikzpicture}
+  \caption{A visual representation of $\langle 2 \rangle = \langle 10 \rangle$.}
+  \label{fig:4.8c}
+\end{figure}
+
+\begin{figure}[htb]
+  \centering
+  \begin{tikzpicture}
+    \node[minimum size=12em, rotate=45, regular polygon, regular polygon
+    sides=4,color=black] (a) {};
+
+    \draw[thin,black] (a.corner 1) -- (a.corner 2) -- (a.corner 3) -- (a.corner
+    4) -- (a.corner 1);
+
+    \foreach \anchor/\placement/\x in {corner 1/above/0, corner 2/left/9, corner
+      3/below/6, corner 4/right/3} \draw[shift=(a.\anchor)] plot
+    coordinates{(0,0)} node[\placement] {\scriptsize{$\x$}};
+
+    \foreach \x in {1,2,...,4}
+    \fill (a.corner \x) circle[radius=1.5pt];
+  \end{tikzpicture}
+  \caption{A visual representation of $\langle 3 \rangle = \langle 9 \rangle$.}
+  \label{fig:4.8d}
+\end{figure}
+
+\begin{figure}[htb]
+  \centering
+  \begin{tikzpicture}
+    \node[minimum size=12em, regular polygon, regular polygon
+    sides=3,color=black] (a) {};
+
+    \draw[thin,black] (a.corner 1) -- (a.corner 2) -- (a.corner 3) -- (a.corner
+    1);
+
+    \foreach \anchor/\placement/\x in {corner 1/above/0, corner 2/below left/8,
+      corner 3/below right/4} \draw[shift=(a.\anchor)] plot coordinates{(0,0)}
+    node[\placement] {\scriptsize{$\x$}};
+
+    \foreach \x in {1,2,3}
+    \fill (a.corner \x) circle[radius=1.5pt];
+  \end{tikzpicture}
+  \caption{A visual representation of $\langle 4 \rangle = \langle 8 \rangle$.}
+  \label{fig:4.8f}
+\end{figure}
+
+\begin{figure}[htb]
+  \centering
+  \begin{tikzpicture}
+    \node [label=above:\scriptsize{$0$}](a) {};
+    \node [label=above:\scriptsize{$6$},right=9em of a] (b) {};
+    \fill (a) circle[radius=1.5pt];
+    \fill (b) circle[radius=1.5pt];
+    \draw[thin,black] (a.center) -- (b.center);
+  \end{tikzpicture}
+  \caption{A visual representation of $\langle 6 \rangle$.}
+  \label{fig:4.8e}
+\end{figure}
+
+\begin{figure}[htb]
+  \centering
+  \begin{tikzpicture}
+    \node[label={above:\scriptsize{$0$}}] (a) {};
+    \fill (a) circle[radius=1.5pt];
+  \end{tikzpicture}
+  \caption{A visual representation of $\langle 0 \rangle$.}
+  \label{fig:4.8b}
+\end{figure}
+
+\clearpage
+
+\section{Exercise 4.8}
+\textit{Claim.} The cyclic subgroups of $D_6$ are exactly
+\begin{align*}
+  & \langle s_n \rangle = \{ s_n, r_0 \}, && \forall n \in \{0,1,\ldots,5\} \\
+  & \langle r_1 \rangle = \{ r_0, r_1, r_2, r_3, r_4, r_5 \} \\
+  & \langle r_2 \rangle = \{ r_0, r_2, r_4 \} \\
+  & \langle r_3 \rangle = \{ r_0, r_3 \} \\
+  & \langle r_0 \rangle = \{ r_0 \} \, .
+\end{align*}
+
+\begin{proof}
+  Since a cyclic subgroup by definition must generate from a single element in
+  the group, there exist at most $12$ cyclic groups of $D_6$. Then we need only
+  verify that $\langle r_4 \rangle$ and $\langle r_5 \rangle$ are already
+  included in the above list. We have that $\langle r_4 \rangle = \langle r_2
+  \rangle$ and $\langle r_5 \rangle = \langle r_1 \rangle$.
+\end{proof}
+
+\section{Exercise 4.12}
+\emph{Claim.} Let $a$ be an element of a group $G$ of order $n$. Then the
+positive integer $k$ satisfying $a^k = a^{-1}$ is defined by $k = \abs{a}t - 1$
+for all $t \in \Z_{> 0}$ satisfying $a^{\abs{a}t} = e$.
+
+\begin{proof}
+  \begin{align*}
+    & a^k = a^{-1} \\
+    \Longleftrightarrow \quad & a a^k = a a^{-1} \\
+    \Longleftrightarrow \quad & a^{k+1} = e\, .
+  \end{align*}
+  Thus $\abs{a}$ divides $k + 1$ and $k + 1 = \abs{a}t$ for some $t \in \Z$ (by
+  Corollary 4.14). Then $k = \abs{a}t - 1$.
+\end{proof}
+
+\section{Exercise 4.19}
+
+\subsection{Part a)}
+\textit{Claim.} Let $\GL_n(\Z)$ be the set of all $n \times n$ matrices
+having integer entries and having determinant equal to $1$ or $-1$. Then
+$\GL_n(\Z)$ is a subgroup of $\GL_n(\R)$.
+
+\begin{proof}
+  We will show that $\GL_n(\Z)$ satisfies all three conditions of
+  Proposition 4.3.
+
+  Let $A,B \in \GL_n(\Z)$. Then $AB = C$ must be integer valued, and $\det(C)$
+  must be $1$ or $-1$ since $\det(AB) = \det(A)\det(B)$. Then $C \in \GL_n(\Z)$,
+  and $\GL_n(\Z)$ is closed under our operation, satisfying the first condition.
+
+  Clearly the identity matrix $I \in \GL_n(\Z)$, satisfying the second condition.
+
+  Consider $A \in \GL_n(\Z)$. We have that $\det(A^{-1}) = 1/\det(A) = 1$ or
+  $-1$, and since $\det(A) = 1$ or $-1$ we also have that $A^{-1}$ is integer
+  valued. Then $A^{-1} \in \GL_n(\Z)$, satisfying the third condition.
+\end{proof}
+
+\subsection{Part b)}
+\newcommand{\SL}{\text{SL}}
+
+\textit{Claim.} Let $\SL_n(\Z)$ be the set of all $n
+\times n$ matrices having integer entries and having determinant equal to $1$.
+Then $\SL_n(\Z)$ is a subgroup of $\GL_n(\Z)$.
+
+\begin{proof}
+  Let $A,B \in \SL_n(\Z)$. Then $AB = C$ must be integer valued, and since
+  \begin{align*}
+    \det(C)  &= \det(AB) \\
+    & = \det(A)\det(B) \\
+    & = 1\, ,
+  \end{align*}
+  $C$ must be in $\SL_n(\Z)$.
+
+  Clearly $I \in \SL_n(\Z)$.
+
+  Consider $A \in \SL_n(\Z)$. We have that
+  \begin{align*}
+    & \det(A^{-1}) = {1 \over \det(A)} = 1.
+  \end{align*}
+  And since $\det(A) = 1$, $A^{-1}$ must also be integer valued. Thus $A^{-1}
+  \in \SL_n(\Z)$.
+\end{proof}
+
+\subsection{Part c)}
+
+\textit{Claim.} Let $S$ be the subset of $\GL_n(\R)$ consisting of all $n \times
+n$ matrices having integer entries. Then matrix multiplication does not define a
+group operation on $S$.
+
+\begin{proof}
+  Assume for the purpose of contradiction that matrix multiplication does define
+  a group operation on $S$. Then $S$ is a subgroup of $\GL_n(\R)$.
+
+  Let $A \in S$ be an integer-valued matrix with determinant not equal $1$ or
+  $-1$. Then $A^{-1}$ is not integer valued yet $A^{-1}$ must be in $S$, thus
+  we have a contradiction.
+\end{proof}
+
+\section{Exercise 4.23}
+
+\textit{Claim.} Let $H$ be a finite subset of group $G$. Then $H$ is a subgroup
+of $G$ if and only if
+\begin{enumerate}[label=(\roman*)]
+\item If $a$ and $b$ lie in $H$, then $ab$ lies in $H$,
+\item $H$ is nonempty.
+\end{enumerate}
+
+\begin{proof}
+  Let $H$ be a finite subgroup of $G$. Then if $a,b \in H$ then $ab \in H$ by
+  condition $(1)$ of the subgroup test, and $H$ is nonempty by condition $(2)$.
+
+  Now let $H$ be a finite subset of group $G$, and assume that $H$ is nonempty
+  and that if $a,b \in H$ then $ab \in H$. We will show that there exists an
+  identity element $e \in H$ and for all $a$ there exists $a^{-1} \in H$. Since
+  $H$ is finite we have that $a^m = a^k$ where $m \neq k$. Let $m > k$, then
+  $a^{m - k} = e$. Then $a a^{m - k - 1} = e$, thus $a^{m - k - 1} = a^{-1}$.
+\end{proof}
+
+\section{Exercise 5.2}
+
+\subsection{Part a)}
+
+Since the groups are finite and commutative,
+
+\begin{align*}
+  \langle 3, 5 \rangle \in U_{16}
+  & = \{ 3^n 5^m : n, m \in \Z \} \\
+  & = \{ 3^0 5^0, 3^0 5^1, \ldots, 3^1 5^{0}, 3^1 5^1, \ldots \} \\
+  & = U_{16}\, .
+\end{align*}
+
+\begin{align*}
+  \langle 9, 15 \rangle \in U_{16}
+  & = \{ 9^n 15^m : n,m \in \Z \} \\
+  & = \{ 9^0 15^0, 9^0 15^1, \ldots, 9^1 15^0, 9^1 15^1, \ldots \} \\
+  & = \{ 1, 7, 9, 15 \}\, .
+\end{align*}
+
+\subsection{Part b)}
+
+\begin{align*}
+  \langle r_4, s_0 \rangle \in D_8
+  & = \{ r_0, r_4, s_0, s_4 \}\, .
+\end{align*}
+
+\begin{align*}
+  \langle r_2, s_0 \rangle \in D_8
+  & = D_8\, .
+\end{align*}
+
+\subsection{Part c)}
+
+\section{Exercise 5.3}
+
+\textit{Claim.} $U_{14}$ is cyclic.
+
+\begin{proof}
+  It suffices to show that $\langle a \rangle = U_{14}$ for some $a \in
+  U_{14}$.
+  \begin{align*}
+    & \langle 3 \rangle = \{ 1, 3, 5, 9, 11, 13\}\, . \qedhere
+  \end{align*}
+\end{proof}
+
+\noindent
+\textit{Claim.} $U_{15}$ is not cyclic.
+
+\begin{proof}
+  It suffices to show that $\langle a \rangle \neq U_{15}$ for all $a \in
+  U_{15}$.%
+  \begin{align*}
+    & \langle 1 \rangle = \{ 1 \} \\
+    & \langle 2 \rangle = \{ 1, 2, 4, 8 \} \\
+    & \langle 4 \rangle = \{ 1, 4 \} \\
+    & \langle 6 \rangle = \{ 1, 6 \} \\
+    & \langle 7 \rangle = \{ 1, 4, 7, 13 \} \\
+    & \langle 8 \rangle = \{ 1, 2, 4, 8 \} \\
+    & \langle 11 \rangle = \{ 1, 11 \} \\
+    & \langle 13 \rangle = \{ 1, 4, 7, 13 \} \\
+    & \langle 14 \rangle = \{ 1, 14 \}\, . \qedhere
+  \end{align*}
+\end{proof}
+
+\section{Exercise 5.5}
+
+\subsection{Part a)}
+
+\textit{Claim.} $\langle a, b \rangle = \langle \gcd(a, b) \rangle$ for any $a,b
+\in \Z$.
+
+\begin{proof}
+  Note that addition is commutative, so
+  \begin{align*}
+    \langle a, b \rangle
+    & = \{ a^n b^m : n, m \in \Z \} \\
+    & = \{ na + mb : n, m \in \Z \}\, .
+  \end{align*}
+  Note that since $\gcd(a, b)$ divides any linear combination of $a$ and $b$,
+  $\gcd(a,b)$ must be the smallest positive linear combination of $a$ and $b$.
+  Thus $\langle \gcd(a,b) \rangle = \langle a, b \rangle$.
+\end{proof}
+
+\subsection{Part b)}
+
+\textit{Claim.} $\langle a, b \rangle = \langle \gcd(a, b, n) \rangle$ for any
+$a, b, \in \Z_n$.
+
+\begin{proof}
+  Addition modulo $n$ is still commutative, so
+  \begin{align*}
+    \langle a, b \rangle
+    & = \{ a^p b^q : p, q \in \Z \} \\
+    & = \{ pa + qb \bmod n : p, q \in \Z\}
+  \end{align*}
+  Then let $c = \gcd(a, b, n)$. \emph{TODO:} Show that any $pa + qb$ can be
+  expressed as $rc$ and vice versa.
+\end{proof}
+
+\section{Exercise 5.7}
+
+\subsection{Part a)}
+
+\emph{Claim.} $\langle a, b \rangle = \langle a^{-1}, b \rangle$.
+
+\begin{proof}
+  \begin{align*}
+    \langle a, b \rangle
+    & = \{ s_1^{n_1}s_2^{n_2} \cdots s_k^{n_k} :
+    s_i \in \{a, b\}, n_i \in \Z_{\neq 0} \} \\
+    & = \langle a^{-1}, b \rangle
+  \end{align*}
+  since $\{ a^{n_i} : n_i \in \Z_{\neq 0} \} = \{ {(a^{-1})}^{n_i} : n_i \in
+  \Z_{\neq 0} \}$.
+\end{proof}
+
+\subsection{Part b)}
+
+\emph{Claim.} $\langle a, b \rangle = \langle a, a^{-1} b \rangle$.
+
+\begin{proof}
+  Similar to the proof above, note that one may map any expression for the
+  elements of $\langle a, b \rangle$ of the form given in Proposition 5.5 to an
+  equivalent expression for the elements of $\langle a, a^{-1} b \rangle$ by
+  replacing each $b$ in the first expression with $a a^{-1} b$. Since the mapped
+  expression satisfies for $\langle a, a^{-1} b \rangle$ the form given in
+  Proposition 5.5, and because this map forms a bijection by mapping any
+  expression for an element of $\langle a, a^{-1} b \rangle$ that does not
+  include $a a^{-1} b$ to itself, $\langle a, b \rangle = \langle a, a^{-1} b
+  \rangle$.
+\end{proof}
+
+\subsection{Part c)}
+
+\emph{Claim.} $\langle a, b \rangle = \langle a, ab \rangle$.
+
+\begin{proof}
+  As above, we can create a bijection from the expressions generated by $\langle
+  a, b \rangle$ to equivalent elements generated by $\langle a, ab \rangle$ by
+  replacing every $b$ with $a^{-1}ab$ and vice versa, and mapping any
+  expression in $\langle a, b \rangle$ that does not have $b$ to itself and
+  any expression in $\langle a, ab \rangle$ that does not have $a^{-1} a b$ to
+  itself. Thus $\langle a, b \rangle = \langle a, ab \rangle$.
+\end{proof}
+
+\end{document}
