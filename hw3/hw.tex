@@ -1,0 +1,326 @@
+\documentclass{abrice}
+
+\title{Math 393: Homework 3}
+\author{Anthony Brice}
+
+\usepackage[mathscr]{eucal}
+
+\newcommand{\GL}{\text{GL}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\Q}{\mathbb{Q}}
+\renewcommand{\P}{\mathscr{P}}
+
+\usepackage{amsthm}
+
+\begin{document}
+\maketitle
+
+\section{Exercise 18.2}
+
+\emph{Claim.} Let $a$ and $b$ be elements of commutative ring $R$. Then ${(a + b)}^2 = a^2
++ 2 \cdot (ab) + b^2$.
+
+\begin{proof}
+  \begin{align*}
+    {(a + b)}^2
+    &= (a + b) \cdot (a + b) \\
+    &= a^2 + ab + ba + b^2 \\
+    &= a^2 + 2 \cdot (ab) + b^2\, . \qedhere
+  \end{align*}
+\end{proof}
+
+\noindent
+\emph{Claim.} Let $a$ and $b$ be elements of non-commutative ring $R$. Then it
+does not necessarily hold that ${(a + b)}^2 = a^2 + 2 \cdot (ab) + b^2$.
+
+\begin{proof}
+  Let $a = \left(\begin{smallmatrix} 1&1 \\ 0&1 \end{smallmatrix} \right)$ and
+  $b = \left( \begin{smallmatrix} 0&1 \\ 0&1 \end{smallmatrix} \right)$, both in
+  $M_2(\Q)$. Then
+  \begin{align*}
+    {(a + b)}^2
+    &= (a + b) \cdot (a + b) \\
+    &= a^2 + ab + ba + b^2 \\
+    &= \left(  \begin{smallmatrix} 1&2 \\ 0&1 \end{smallmatrix} \right)
+      + \left( \begin{smallmatrix} 0&2 \\ 0&1 \end{smallmatrix} \right)
+      + \left( \begin{smallmatrix} 0&1 \\ 0&1 \end{smallmatrix} \right)                                       + \left( \begin{smallmatrix} 0&1 \\ 0&1 \end{smallmatrix} \right) \\
+    &\neq a^2 + 2 \cdot (ab) + b^2\, . \qedhere
+  \end{align*}
+\end{proof}
+
+\section{Exercise 18.6}
+
+\emph{Claim.} Every subring of an integral domain is an integral domain.
+
+\begin{proof}
+  Let $S$ be a subring of ring $R$ where $R$ is an integral domain. Then $R$ is
+  a ring that is a subring of some field $T$. Then $S$ is also a subring of $T$,
+  thus satisfying the definition of an integral domain.
+\end{proof}
+
+\section{Exercise 18.13}
+
+\emph{Claim.} For any $x$ and $y$ in integral domain $R$, $x^2 = y^2$ if and
+only if $x = y$ or $x = -y$.
+
+\begin{proof}
+  Let $x,y \in R$ where $R$ is an integral domain.
+
+  Assume $x = y$. Then $x^2 = xx = yy = y^2$. Similarly for $x = -y$, $x^2 = xx
+  = (-y)(-y) = y^2$ by Proposition 18.18.
+
+  Assume $x^2 = y^2$, and assume that $x \neq y$ and $x \neq -y$ for the purpose
+  of contradiction.
+  \begin{align*}
+    x^2 &= y^2 \\
+    \Longleftrightarrow \quad xx &= yy\, .
+  \end{align*}
+  \emph{TODO:} ???
+\end{proof}
+
+\section{Exercise 18.15}
+
+Let $R = \{a/b : a,b \in \Z \text{ and } b \text{ is odd}\}$.
+
+\subsection{Part a)}
+
+\emph{Claim.} $R$ is a subring of $\Q$.
+
+\begin{proof}
+  We want to show that the three conditions of Proposition 18.13 hold.
+
+  Clearly $R$ is a subset of $\Q$. Let $x,y \in R$ and consider $z = x + y$.
+  Since the least common multiple of two odd numbers is itself an odd number, $z
+  \in R$ as well, so $R$ is closed under the group operation of $\Q$. Since $0
+  \in \Z$ and $0/b$ where $b$ is odd equals $0$, we have the additive identity
+  element in $R$. By definition, $R$ clearly gives us additive inverses. Thus
+  $R$ is a subgroup of $\Q$.
+
+  Since $1 \in \Z$ and is odd, we have the multiplicative identity in $R$.
+
+  Now consider the product $w = xy$. Since the product of two odd numbers is odd
+  and the product of any two integers is an integer, $w \in R$ and thus $R$ is
+  closed under multiplication in $\Q$.
+\end{proof}
+
+\subsection{Part b)}
+
+\emph{Claim.} $R^* = \{ a/b : a,b \in \Z \text{ and } a,b \text{ are odd} \}$.
+
+\begin{proof}
+  Let $a/b \in R$. Then the multiplicative inverse of $a/b$ is $b/a$. Then $b/a$
+  is only in $R$ when $a$ is odd.
+\end{proof}
+
+\section{Exercise 18.18}
+
+Let $\Z[\sqrt 2] = \{a + b\sqrt 2 : a,b \in \Z \}$.
+
+\subsection{Part a)}
+
+\emph{Claim.} $\Z[\sqrt 2]$ is a subring of $\R$.
+
+\begin{proof}
+  Let $x = a + b\sqrt 2$ and $y = c + d\sqrt{2}$ where $a,b,c,d \in \Z$. Then
+  \begin{align*}
+    x + y
+    &= a + b\sqrt 2 + c + d\sqrt 2 \\
+    &= a + c + (b + d)\sqrt 2\, .
+  \end{align*}
+  Thus $x + y \in \Z[\sqrt 2]$. Clearly $0 \in \Z[\sqrt 2]$, and we have
+  additive inverses since for any $a,b \in \Z$ we have $-a, -b \in \Z$.
+
+  Consider the element $1 + 0 \sqrt 2 = 1$. Then $1 \in \Z[\sqrt 2]$.
+
+  Next consider the product
+  \begin{align*}
+    xy
+    &= (a + b\sqrt 2) (c + d \sqrt 2) \\
+    &= a c + a d \sqrt 2 + b c \sqrt 2 + (b \sqrt 2)(d \sqrt 2) \\
+    &= a c + \sqrt 2 (ad + bc) + 2bd \\
+    & = ac + 2bd + \sqrt 2(ad + bc)\, .
+  \end{align*}
+  Thus $xy \in \Z[\sqrt 2]$.
+\end{proof}
+
+\subsection{Part b)}
+
+\emph{Claim.} $\Z[\sqrt 2]$ is the smallest subring of $\R$ containing $\sqrt
+2$.
+
+\begin{proof}
+  \emph{TODO:} Show that any subring containing $\sqrt 2$ contains all elements
+  in $\Z[\sqrt 2]$.
+\end{proof}
+
+\subsection{Part c)}
+
+\emph{Claim.} $1 + \sqrt 2$ is a unit in $\Z[\sqrt 2]$.
+
+\begin{proof}
+  \begin{align*}
+    (1 + \sqrt 2)(\sqrt 2 - 1)
+    &= \sqrt 2 - 1 + 2 - \sqrt 2 \\
+    &= 1\, .
+  \end{align*}
+  Since $\sqrt 2 - 1 \in \Z[\sqrt 2]$, the element is the inverse of $1 + \sqrt 2$.
+\end{proof}
+
+\section{Exercise 18.20}
+
+Let $\Z[\sqrt[3]{2}] = \{ a + b \sqrt[3]{2} + c \sqrt[3]{4} : a,b,c \in \Z \}$.
+
+\subsection{Part a)}
+
+\emph{Claim.} $\Z[\sqrt[3]{2}]$ is a subring of $\R$.
+
+\begin{proof}
+  Let $x = a + b \sqrt[3]{2} + c \sqrt[3]{4}$ and $y = e + f \sqrt[3]{2} + g
+  \sqrt[3]{4}$ where $a,b,c,d,e,f \in \Z$. Then
+  \begin{align*}
+    x + y
+    &= a + b \sqrt[3]{2} + c \sqrt[3]{4} + e + f \sqrt[3]{2} + g \sqrt[3]{4} \\
+    &= a + e + \sqrt[3]{2}(b + f) + \sqrt[3]{4}(c + g)\, .
+  \end{align*}
+  So $x + y \in \Z[\sqrt[3]{2}]$. Clearly $0 \in \Z[\sqrt[3]{2}]$, and we have
+  additive inverses since for any $a,b,c \in \Z$ we have $-a,-b,-c \in \Z$.
+
+  Consider $1 + 0\sqrt[3]{2} + 0\sqrt[3]{4} = 1$. Then $1 \in \Z[\sqrt[3]{2}]$.
+
+  Now consider the product
+  \begin{align*}
+    xy
+    &= (a + b \sqrt[3]{2} + c \sqrt[3]{4})(e + f \sqrt[3]{2} + g \sqrt[3]{4}) \\
+    &= ae + af \sqrt[3]{2} + ag \sqrt[3]{4} + be \sqrt[3]{2} + bf \sqrt[3]{4}
+      + 2bg + ce \sqrt[3]{4} + 2cf + 2cg \sqrt[3]{2} \\
+    &= ae + 2(bg + cf) + \sqrt[3]{2} (af + be + 2cg) + \sqrt[3]{4} (ag + bf + ce)\, .
+  \end{align*}
+  So $xy \in \Z[\sqrt[3]{2}]$.
+\end{proof}
+
+\subsection{Part b)}
+
+\emph{Claim.} Let $S = \{ a + b \sqrt[3]{2} : a,b \in \Z \}$. Then $\sqrt[3]{4}
+\notin S$.
+
+\begin{proof}
+  Assume $\sqrt[3]{4} \in S$. Then there exists $a,b \in \Z$ where
+  \begin{align*}
+    &a + b \sqrt[3]{2} = \sqrt[3]{4} \\
+    \Longleftrightarrow \quad
+    &a = \sqrt[3]{4} - b \sqrt[3]{2} \\
+    \Longleftrightarrow \quad
+    &a = \sqrt[3]{2} (\sqrt[3]{2} - b)\, .
+  \end{align*}
+  \emph{TODO:} Show $a$ or $b$ is not in $\Z$.
+\end{proof}
+
+\subsection{Part c)}
+
+\emph{Claim.} Let $S = \{a + b\sqrt[3]{2} : a,b \in \Z \}$. Then $S$ is not a
+subring of $\R$.
+
+\begin{proof}
+  Consider that $\sqrt[3]{2} \cdot \sqrt[3]{2} = \sqrt[3]{4}$ is not in $S$.
+  Then $S$ is not closed under multiplication in $\R$.
+\end{proof}
+
+\subsection{Part d)}
+
+\emph{Claim.} $\Z[\sqrt[3]{2}]$ is the smallest subring of $\R$ containing
+$\sqrt[3]{2}$.
+
+\begin{proof}
+  \emph{TODO:} Show that any subring containing $\sqrt[3]{2}$ contains all
+  elements in $\Z[\sqrt[3]{2}]$.
+\end{proof}
+
+\section{Exercise 18.28}
+
+Let $a$ and $b$ be elements of a ring $R$ such that $ab = ba$.
+
+\subsection{Part a)}
+
+\emph{Claim.} ${(a + b)}^2 = a^2 + 2 \cdot (ab) + b^2$.
+
+\begin{proof}
+  \begin{align*}
+    {(a + b)}^2
+    &= (a + b) \cdot (a + b) \\
+    &= a^2 + ab + ba + b^2 \\
+    &= a^2 + 2 \cdot (ab) + b^2\, . \qedhere
+  \end{align*}
+\end{proof}
+
+\subsection{Part b)}
+
+\emph{Claim.} ${(a + b)}^3 = a^3 + 3 \cdot (a^2b) + 3 \cdot (ab^2) + b^3$.
+
+\begin{proof}
+  \begin{align*}
+    {(a + b)}^3
+    &= (a + b){(a + b)}^2 \\
+    &= (a + b)(a^2 + 2ab + b^2) \\
+    &= a^3 + 2a^2b + ab^2 + a^2b + 2ab^2 + b^3 \\
+    &= a^3 + 3 \cdot (a^2b) + 3 \cdot (ab^2) + b^3\, . \qedhere
+  \end{align*}
+\end{proof}
+
+\subsection{Part c)}
+
+\emph{Claim.} The binomial theorem
+\[
+  {(a + b)}^n = \sum_{k=0}^n {n \choose k} \cdot (a^k b^{n-k})
+\]
+holds for any positive integer $n$.
+
+\begin{proof}
+  Consider the base case $n = 1$. We have on the left-hand side $a + b$, and
+  computing the right gives us
+  \begin{align*}
+    \sum_{k=0}^1 {1 \choose k} \cdot (a^k b^{1-k})
+    &= {1 \choose 0} \cdot (a^0b^1) + {1 \choose 1} \cdot (a^1b^0) \\
+    &= b + a \\
+    &= a + b\, .
+  \end{align*}
+
+  Now assume for the purpose of induction that the claim holds when $n = m$ and
+  consider the case when $n = m + 1$. Starting from the right-hand side we have
+  \begin{align*}
+    \sum_{k=0}^{m+1} {m + 1 \choose k} \cdot (a^k b^{m+1-k})
+    &= \sum_{k=0}^{m+1} \left(  {m \choose k} + {m \choose k-1 } \right) \cdot
+      (a^k b^{m+1-k}) \\
+    &= \sum_{k=0}^{m+1} {m \choose k} \cdot (a^k b^{m+1-k}) + {m \choose k-1}
+      \cdot (a^k b^{m+1-k}) \\
+    &= \sum_{k=0}^{m+1} {m \choose k} \cdot (a^k b^{m+1-k}) + \sum_{j=0}^{m+1} {m \choose j-1}
+      \cdot (a^j b^{m+1-j})\, .
+  \end{align*}
+  Since ${m \choose m + 1} = 0$ and ${m \choose -1} = 0$,
+  \begin{align*}
+    \sum_{k=0}^{m+1} {m + 1 \choose k} \cdot (a^k b^{m+1-k})
+    &= \sum_{k=0}^{m} {m \choose k} \cdot (a^k b^{m+1-k}) + \sum_{j=1}^{m+1} {m \choose j-1}
+      \cdot (a^j b^{m+1-j}) \\
+    &= b \cdot \sum_{k=0}^{m} {m \choose k} \cdot (a^k b^{m-k}) +
+      \sum_{j=1}^{m+1} {m \choose j-1}
+      \cdot (a^j b^{m+1-j}) \\
+    &= b \cdot {(a + b)}^m + \sum_{j=1}^{m+1} {m \choose j-1} \cdot (a^j
+      b^{m+1-j}) \\
+    &= b \cdot {(a + b)}^m + a \cdot \sum_{j=1}^{m+1} {m \choose j-1} \cdot
+      (a^{j-1} b^{m-(j-1)}) \\
+    &= b \cdot {(a + b)}^m + a \cdot \sum_{j=0}^{m} {m \choose j} \cdot
+      (a^{j} b^{m-j}) \\
+    &= b \cdot {(a + b)}^m + a \cdot {(a + b)}^m \\
+    &= (b + a){(a + b)}^m \\
+    &= {(a + b)}^{m+1}\, . \qedhere
+  \end{align*}
+\end{proof}
+
+\section{Exercise 18.29}
+
+Let $S$ be a set, and let $\P(S)$ be the set of all subsets of $S$. Define $A
+\oplus B = A \cup B - A \cap B$ or any two sets $A$ and $B$.
+
+\end{document}
+
+%  LocalWords:  subring
