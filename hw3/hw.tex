@@ -70,13 +70,8 @@ only if $x = y$ or $x = -y$.
   Assume $x = y$. Then $x^2 = xx = yy = y^2$. Similarly for $x = -y$, $x^2 = xx
   = (-y)(-y) = y^2$ by Proposition 18.18.
 
-  Assume $x^2 = y^2$, and assume that $x \neq y$ and $x \neq -y$ for the purpose
-  of contradiction.
-  \begin{align*}
-    x^2 &= y^2 \\
-    \Longleftrightarrow \quad xx &= yy\, .
-  \end{align*}
-  \emph{TODO:} ???
+  Assume $x^2 = y^2$. Then $x^2 - y^2 = 0$. Since this is a difference of
+  squares, we have that $(x + y)(x - y) = 0 \Longrightarrow x = y$ or $x = -y$.
 \end{proof}
 
 \section{Exercise 18.15}
@@ -213,7 +208,7 @@ Let $\Z[\sqrt[3]{2}] = \{ a + b \sqrt[3]{2} + c \sqrt[3]{4} : a,b,c \in \Z \}$.
     \Longleftrightarrow \quad
     &a = \sqrt[3]{2} (\sqrt[3]{2} - b)\, .
   \end{align*}
-  \emph{TODO:} Show $a$ or $b$ is not in $\Z$.
+  Then $a$ cannot be an integer since $a$ has $\sqrt[3]{2}$ as a factor.
 \end{proof}
 
 \subsection{Part c)}
@@ -262,7 +257,8 @@ Let $a$ and $b$ be elements of a ring $R$ such that $ab = ba$.
     {(a + b)}^3
     &= (a + b){(a + b)}^2 \\
     &= (a + b)(a^2 + 2ab + b^2) \\
-    &= a^3 + 2a^2b + ab^2 + a^2b + 2ab^2 + b^3 \\
+    &= (a + b)(a^2 + ab + ab + b^2) \\
+    &= a^3 + a^2 b + a^2 b + a b^2 + a^2 b + a b^2 + a b^2 + b^3 \\
     &= a^3 + 3 \cdot (a^2b) + 3 \cdot (ab^2) + b^3\, . \qedhere
   \end{align*}
 \end{proof}
@@ -291,8 +287,8 @@ holds for any positive integer $n$.
     \sum_{k=0}^{m+1} {m + 1 \choose k} \cdot (a^k b^{m+1-k})
     &= \sum_{k=0}^{m+1} \left(  {m \choose k} + {m \choose k-1 } \right) \cdot
       (a^k b^{m+1-k}) \\
-    &= \sum_{k=0}^{m+1} {m \choose k} \cdot (a^k b^{m+1-k}) + {m \choose k-1}
-      \cdot (a^k b^{m+1-k}) \\
+    &= \sum_{k=0}^{m+1} \left( {m \choose k} \cdot (a^k b^{m+1-k}) + {m \choose k-1}
+      \cdot (a^k b^{m+1-k})  \right) \\
     &= \sum_{k=0}^{m+1} {m \choose k} \cdot (a^k b^{m+1-k}) + \sum_{j=0}^{m+1} {m \choose j-1}
       \cdot (a^j b^{m+1-j})\, .
   \end{align*}
@@ -319,8 +315,160 @@ holds for any positive integer $n$.
 \section{Exercise 18.29}
 
 Let $S$ be a set, and let $\P(S)$ be the set of all subsets of $S$. Define $A
-\oplus B = A \cup B - A \cap B$ or any two sets $A$ and $B$.
+\oplus B = A \cup B - A \cap B$ for any two sets $A$ and $B$.
+
+\subsection{Part a)}
+
+\emph{Claim.} $\P(S)$ is a ring where addition is $\oplus$ and multiplication
+is $\cap$.
+
+\begin{proof}
+  We must first show that $\P(S)$ is an abelian group under $\oplus$. Let $A, B,
+  C \in \P(S)$ and let $x \in (A \oplus B) \oplus C$. Then we have $2$ exclusive
+  cases, $x \in A \oplus B$ or $x \in C$. For the case when $x \in A \oplus B$
+  we have $2$ more exclusive cases, $x \in A$ or $x \in B$. Thus we have $3$
+  exclusive cases and for each we will show that $x \in A \oplus (B \oplus C)$.
+  \begin{enumerate}[label=\emph{\roman*})]
+  \item ($x \in A$.) $x \notin B$ and $x \notin C \Rightarrow x \notin B \oplus
+    C$. $x \notin B \oplus C$ and $x \in A \Rightarrow x \in A \oplus (B \oplus
+    C)$.
+  \item ($x \in B$.) $x \in B$ and $x \notin C \Rightarrow x \in B \oplus C$. $x
+    \in B \oplus C$ and $x \notin A \Rightarrow x \in A \oplus (B \oplus C)$.
+  \item ($x \in C$.) $x \in C$ and $x \notin B \Rightarrow x \in B \oplus C$.
+    $x \in B \oplus C$ and $x \notin A \Rightarrow x \in A \oplus (B \oplus C)$.
+  \end{enumerate}
+  Then $(A \oplus B) \oplus C \subset A \oplus (B \oplus C)$.
+
+  Now let $y \in A \oplus (B \oplus C)$. As above, we then have $3$ exclusive
+  cases: $y \in A$, $y \in B$, or $y \in C$. For each we will show that $y \in
+  (A \oplus B) \oplus C$.
+  \begin{enumerate}[label=\emph{\roman*})]
+  \item ($y \in A$.) $y \in A$ and $y \notin B \Rightarrow y \in A \oplus B$. $y
+    \in A \oplus B$ and $y \notin C \Rightarrow y \in (A \oplus B) \oplus C$.
+  \item ($y \in B$.) $y \in B$ and $y \notin A \Rightarrow y \in A \oplus B$. $y
+    \in A \oplus B$ and $y \notin C \Rightarrow y \in (A \oplus B) \oplus C$.
+  \item ($y \in C$.) $y \notin A$ and $y \notin B \Rightarrow y \notin A \oplus
+    B$. $y \notin A \oplus B$ and $y \in C \Rightarrow y \in (A \oplus B) \oplus
+    C$.
+  \end{enumerate}
+  Then $A \oplus (B \oplus C) \subset (A \oplus B) \oplus C$. Since we also have
+  $(A \oplus B) \oplus C \subset A \oplus (B \oplus C)$, we must have that $(A
+  \oplus B) \oplus C = A \oplus (B \oplus C)$, so $\oplus$ is associative.
+
+  Now consider the empty set $\O$. $A \oplus \O = A \cup \O - A \cap \O = A = \O
+  \cup A - \O \cap A = \O \oplus A$, so $\O$ is the additive identity. Next,
+  note that $A \oplus A = A \cup A - A \cap A = \O$, so the additive inverse of
+  any element in $\P(S)$ is itself. Finally since $\cup$ and $\cap$ are
+  commutative, $A \oplus B = A \cup B - A \cap B = (A \cup B) \cap (A \cap B)' =
+  (B \cup A) \cap (B \cap A)' = B \cup A - B \cap A = B \oplus A$ where $D'$
+  defines the complement of $D$ for all $D \in \P(S)$. Thus $\oplus$
+  is commutative.
+
+  Since we have an associative and commutative operation, an identity element,
+  and inverses, we have that $\P(S)$ is an abelian group under $\oplus$.
+
+  Next we consider the multiplication operation $\cap$. Since $A \cap S = A = S
+  \cap A$, $S$ is the multiplicative identity. $\cap$ is clearly associative.
+
+  Now we only have left to show that $\cap$ is left- and right-distributive over
+  $\oplus$. Let $x \in A \cap (B \oplus C)$. Then we have two exclusive cases:
+  $x \in A \cap B$, or $x \in A \cap C$.
+  \begin{enumerate}[label=\emph{\roman*})]
+  \item ($x \in A \cap B$.) $x \notin A \cap C$ and $x \in A \cap B \Rightarrow
+    x \in (A \cap B) \oplus (A \cap C)$.
+  \item ($x \in A \cap C$.) $x \notin A \cap B$ and $x \in A \cap C \Rightarrow
+    x \in (A \cap B) \oplus (A \cap C)$.
+  \end{enumerate}
+  Then $A \cap (B \oplus C) \subset (A \cap B) \oplus (A \cap C)$.
+
+  Similarly let $y \in (A \cap B) \oplus (A \cap C)$. Then we again have two
+  exclusive cases: $y \in A \cap B$, or $y \in A \cap C$.
+  \begin{enumerate}[label=\emph{\roman*})]
+  \item ($y \in A \cap B$.) $y \in A \cap B$ and $y \notin A \cap C \Rightarrow
+    y \notin C$. $y \in A \cap B \Rightarrow y \in B$. $y \in B$ and $y \notin C
+    \Rightarrow y \in B \oplus C$. $y \in A \cap B \Rightarrow y \in A$. $y \in
+    A$ and $y \in B \oplus C \Rightarrow y \in A \cap (B \oplus C)$.
+  \item ($y \in A \cap C$.) $y \in A \cap C$ and $y \notin A \cap B \Rightarrow
+    y \notin B$. $y \in A \cap C \Rightarrow y \in C$. $y \notin B$ and $y \in C
+    \Rightarrow y \in B \oplus C$. $y \in A \cap C \Rightarrow y \in A$. $y \in
+    A$ and $y \in B \oplus C \Rightarrow y \in A \cap (B \oplus C)$.
+  \end{enumerate}
+  Then $(A \cap B) \oplus (A \cap C) \subset A \cap (B \oplus C)$. Since we also
+  have $A \cap (B \oplus C) \subset (A \cap B) \oplus (A \cap C)$, we must have
+  that $A \cap (B \oplus C) = (A \cap B) \oplus (A \cap C)$. Thus $\cap$ is
+  left-distributive over $\oplus$.
+
+  Now let $x \in (B \oplus C) \cap A$. Then we have two exclusive cases: $x \in
+  B \cap A$ or $x \in C \cap A$.
+  \begin{enumerate}[label=\emph{\roman*})]
+  \item ($x \in B \cap A$.) $x \notin C \cap A$ and $x \in B \cap A \Rightarrow
+    x \in (B \cap A) \oplus (C \cap A)$.
+  \item ($x \in C \cap A$.) $x \notin B \cap A$ and $x \in C \cap A \Rightarrow
+    x \in (B \cap A) \oplus (C \cap A)$.
+  \end{enumerate}
+  Then $(B \oplus C) \cap A \subset (B \cap A) \oplus (C \cap A)$.
+
+  Similarly let $y \in (B \cap A) \oplus (C \cap A)$. Then we again have two
+  exclusive cases: $y \in B \cap A$, or $y \in C \cap A$.
+  \begin{enumerate}[label=\emph{\roman*})]
+  \item ($y \in B \cap A$.) $y \in B \cap A$ and $y \notin C \cap A \Rightarrow
+    y \notin C$. $y \in B \cap A \Rightarrow y \in B$. $y \in B$ and $y \notin C
+    \Rightarrow y \in B \oplus C$. $y \in B \cap A \Rightarrow y \in A$. $y \in
+    B \oplus C$ and $y \in A \Rightarrow y \in (B \oplus C) \cap A$.
+  \item ($y \in C \cap A$.) $y \in C \cap A$ and $y \notin B \cap A \Rightarrow
+    y \notin B$. $y \in C \cap A \Rightarrow y \in C$. $y \notin B$ and $y \in C
+    \Rightarrow y \in B \oplus C$. $y \in C \cap A \Rightarrow y \in A$. $y \in
+    B \oplus C$ and $y \in A \Rightarrow y \in (B \oplus C) \cap A$.
+  \end{enumerate}
+  Then $(B \cap A) \oplus (C \cap A) \subset (B \oplus C) \cap A$. Since we also
+  have $(B \oplus C) \cap A \subset (B \cap A) \oplus (C \cap A)$, we must have
+  that $(B \oplus C) \cap A = (B \cap A) \oplus (C \cap A)$. Thus $\cap$ is
+  right-distributive over $\oplus$.
+
+  Since all properties of Definition 18.1 are satisfied, we now conclude the proof.
+\end{proof}
+
+\subsection{Part b)}
+
+Cayley tables for both operations are given in Tables~\ref{tab:29b1} and \ref{tab:29b2}.
+
+\begin{table}
+  \centering
+  \begin{tabular}{r|llll}
+    $\oplus$ & $\O$ & $\{a\}$ & $\{b\}$ & $\{a,b\}$ \\
+    \midrule
+    $\O$ & $\O$ & $\{a\}$ & $\{b\}$ & $\{a,b\}$ \\
+    $\{a\}$ & $\{a\}$ & $\O$ & $\{a,b\}$ & $\{b\}$ \\
+    $\{b\}$ & $\{b\}$ & $\{a,b\}$ & $\O$ & $\{a\}$ \\
+    $\{a,b\}$ & $\{a,b\}$ & $\{b\}$ & $\{a\}$ & $\O$
+  \end{tabular}
+  \caption{The Cayley table for $\oplus$ in $\P(S)$.}
+  \label{tab:29b1}
+\end{table}
+
+\begin{table}
+  \centering
+  \begin{tabular}{r|llll}
+    $\cap$ & $\O$ & $\{a\}$ & $\{b\}$ & $\{a,b\}$ \\
+    \midrule
+    $\O$ & $\O$ & $\O$ & $\O$ & $\O$ \\
+    $\{a\}$ & $\O$ & $\{a\}$ & $\O$ & $\{a\}$ \\
+    $\{b\}$ & $\O$ & $\O$ & $\{b\}$ & $\{b\}$ \\
+    $\{a,b\}$ & $\O$ & $\{a\}$ & $\{b\}$ & $\{a,b\}$
+  \end{tabular}
+  \caption{The Cayley table for $\cap$ in $\P(S)$.}
+  \label{tab:29b2}
+\end{table}
+
+\section{Email Exercise}
+
+\emph{Claim.} $(a + bi + cj + dk)(a - bi - cj -dk) = a^2 + b^2 + c^2 + d^2$ for
+all $a,b,c,d \in \R$ as elements of the ring $H$ of quaternions.
+
+\begin{proof}
+
+\end{proof}
 
 \end{document}
 
-%  LocalWords:  subring
+%  LocalWords:  subring quaternions
