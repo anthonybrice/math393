@@ -9,9 +9,13 @@
 \newcommand{\Z}{\mathbb{Z}}
 \newcommand{\R}{\mathbb{R}}
 \newcommand{\Q}{\mathbb{Q}}
+\renewcommand{\C}{\mathbb{C}}
+\renewcommand{\H}{\mathbb{H}}
 \renewcommand{\P}{\mathscr{P}}
 
 \usepackage{amsthm}
+
+\usepackage{polynom}
 
 \begin{document}
 \maketitle
@@ -71,7 +75,7 @@ only if $x = y$ or $x = -y$.
   = (-y)(-y) = y^2$ by Proposition 18.18.
 
   Assume $x^2 = y^2$. Then $x^2 - y^2 = 0$. Since this is a difference of
-  squares, we have that $(x + y)(x - y) = 0 \Longrightarrow x = y$ or $x = -y$.
+  squares, we have that $(x + y)(x - y) = 0 \Rightarrow x = y$ or $x = -y$.
 \end{proof}
 
 \section{Exercise 18.15}
@@ -145,8 +149,12 @@ Let $\Z[\sqrt 2] = \{a + b\sqrt 2 : a,b \in \Z \}$.
 2$.
 
 \begin{proof}
-  \emph{TODO:} Show that any subring containing $\sqrt 2$ contains all elements
-  in $\Z[\sqrt 2]$.
+  Let $R$ be a subring of $\R$ containing $\sqrt 2$. Then $0,1,\sqrt 2 \in R$.
+  Then since $R$ is an abelian subgroup of $\R$ under addition, $R$ contains at
+  least all elements of the form $a + b\sqrt2 : a,b \in \Z$. Then any subring of
+  $\R$ containing $\sqrt 2$ contains $\Z[\sqrt 2]$, and since we have already
+  proved that $\Z[\sqrt 2]$ is a subring of $R$, we have that $\Z[\sqrt 2]$ is
+  the smallest subring of $\R$ containing $\sqrt 2$.
 \end{proof}
 
 \subsection{Part c)}
@@ -204,11 +212,33 @@ Let $\Z[\sqrt[3]{2}] = \{ a + b \sqrt[3]{2} + c \sqrt[3]{4} : a,b,c \in \Z \}$.
   \begin{align*}
     &a + b \sqrt[3]{2} = \sqrt[3]{4} \\
     \Longleftrightarrow \quad
-    &a = \sqrt[3]{4} - b \sqrt[3]{2} \\
+    & \sqrt[3]{2}(a + b \sqrt[3]{2}) = \sqrt[3]{4} \cdot \sqrt[3]{2} \\
     \Longleftrightarrow \quad
-    &a = \sqrt[3]{2} (\sqrt[3]{2} - b)\, .
+    & a \sqrt[3]{2} + b \sqrt[3]{4} = 2 \\
+    \Longleftrightarrow \quad
+    & a \sqrt[3]{2} + b(a + b \sqrt[3]{2}) = 2 \\
+    \Longleftrightarrow \quad
+    & a \sqrt[3]{2} + ab + b^2 \sqrt[3]{2} = 2 \\
+    \Longleftrightarrow \quad
+    & (a + b^2)\sqrt[3]{2} = 2 - ab\, .
   \end{align*}
-  Then $a$ cannot be an integer since $a$ has $\sqrt[3]{2}$ as a factor.
+  Then on the right-hand side we have an integer, but on the left-hand side we
+  can only have an integer when $a + b^2 = 0$. This leads to the following
+  system of equations:
+  \begin{IEEEeqnarray*}{c}
+    a + b^2 = 0\, , \\
+    2 - ab = 0\, .
+  \end{IEEEeqnarray*}
+  Note that the only $(a, b)$ solving the second equation are $(1,2)$, $(2,1)$,
+  $(-1,-2)$, and $(-2,-1)$. Plugging each pair into the first equation shows we
+  have found a contradiction.
+  \begin{align*}
+    1 + 2^2 &\neq 0\, , \\
+    2 + 1^2 &\neq 0\, , \\
+    -1 + {(-2)}^2 &\neq 0\, , \\
+    -2 + {(-1)}^2 &\neq 0\, .
+  \end{align*}
+  Thus $\sqrt[3]{4} \notin S$.
 \end{proof}
 
 \subsection{Part c)}
@@ -227,8 +257,14 @@ subring of $\R$.
 $\sqrt[3]{2}$.
 
 \begin{proof}
-  \emph{TODO:} Show that any subring containing $\sqrt[3]{2}$ contains all
-  elements in $\Z[\sqrt[3]{2}]$.
+  Let $R$ be a subring of $\R$ containing $\sqrt[3]{2}$. Then $0,1,\sqrt[3]{2}
+  \in R$. Since $R$ is an abelian subgroup under addition in $\R$, and is closed
+  under multiplication in $\R$, then $R$ contains at least all elements of the
+  form $a + b\sqrt[3]{2} + c\sqrt[3]{4} : a,b,c \in \Z$. Then any subring of
+  $\R$ containing $\sqrt[3]{2}$ contains $\Z[\sqrt[3]{2}]$, and since we have
+  already proved that $\Z[\sqrt[3]{2}]$ is a subring of $\R$, we have that
+  $\Z[\sqrt[3]{2}]$ must be the smallest subring of $\R$ containing
+  $\sqrt[3]{2}$.
 \end{proof}
 
 \section{Exercise 18.28}
@@ -442,7 +478,7 @@ Cayley tables for both operations are given in Tables~\ref{tab:29b1} and \ref{ta
     $\{b\}$ & $\{b\}$ & $\{a,b\}$ & $\O$ & $\{a\}$ \\
     $\{a,b\}$ & $\{a,b\}$ & $\{b\}$ & $\{a\}$ & $\O$
   \end{tabular}
-  \caption{The Cayley table for $\oplus$ in $\P(S)$.}
+  \caption{The Cayley table for $\oplus$ in $\P(S)$ when $S = \{a,b\}$.}
   \label{tab:29b1}
 \end{table}
 
@@ -456,19 +492,485 @@ Cayley tables for both operations are given in Tables~\ref{tab:29b1} and \ref{ta
     $\{b\}$ & $\O$ & $\O$ & $\{b\}$ & $\{b\}$ \\
     $\{a,b\}$ & $\O$ & $\{a\}$ & $\{b\}$ & $\{a,b\}$
   \end{tabular}
-  \caption{The Cayley table for $\cap$ in $\P(S)$.}
+  \caption{The Cayley table for $\cap$ in $\P(S)$ when $S = \{a,b\}$.}
   \label{tab:29b2}
 \end{table}
 
 \section{Email Exercise}
 
 \emph{Claim.} $(a + bi + cj + dk)(a - bi - cj -dk) = a^2 + b^2 + c^2 + d^2$ for
-all $a,b,c,d \in \R$ as elements of the ring $H$ of quaternions.
+all $a,b,c,d \in \R$ as elements of the ring $\H$ of quaternions.
 
 \begin{proof}
+  \begin{IEEEeqnarray*}{+rCl+x*}
+    (a + bi + cj + dk)(a - bi - cj - dk)
+    &=& a^2 - abi - acj - adk \\
+    && +\> b i a - b i b i - b i c j - b i d k \\
+    && +\> c j a - c j b i - c j c j  - c j d k\\
+    && +\> d k a - d k b i - d k c j - d k d k \\
+    &=& a^2 + b^2 + c^2 + d^2 \\
+    && -\> abi - acj - adk \\
+    && +\> bia - bck + bdj \\
+    && +\> cja + cbk - cdi \\
+    && +\> dka - dbj + dci \\
+    &=& a^2 + b^2 + c^2 +d^2\, . & \qedhere
+  \end{IEEEeqnarray*}
+\end{proof}
 
+\section{Exercise 17.20}
+
+\emph{Claim.} $\Q$ is the smallest subfield of $\R$.
+
+\begin{proof}
+  Let $F$ be a subfield of $\R$. Then $1 \in F$, and since $F$ is an abelian
+  subgroup under addition, $F$ must contain $\Z$. Since $F - \{0\}$ is an
+  abelian subgroup under multiplication in $\Z$, $F$ must contain the
+  multiplicative inverses for all elements of $\Z - \{0\}$, so $F$ contains all
+  elements of the form $1/a : a \in \Z - \{0\}$. Then since $F$ is again an
+  abelian subgroup under addition, including elements of the form $1/a : a \in
+  \Z - \{0\}$ implies that $F$ contains $\Q$. Then we only have left to show
+  that $\Q$ is a subfield of $\R$.
+
+  Let $a,b \in \Q$. Clearly $a + b \in \Q$, $0 \in \Q$, and for any $a \in \Q$, $-a
+  \in \Q$. Then $\Q$ is a subgroup of $\R$ under addition in $\R$.
+
+  Similarly, $ab \in \Q$, $1 \in \Q$, and for any $a \in \Q - \{0\}$, $1/a \in
+  \Q - \{0\}$. Then $\Q - \{0\}$ is a subgroup of $\R - \{0\}$ under
+  multiplication in $\R$.
+
+  Thus $\Q$ is a subfield of $\R$, and since any subfield of $\R$ must contain
+  $\Q$, it follows that $\Q$ is the smallest subfield of $\R$.
+\end{proof}
+
+\section{Exercise 17.21}
+
+Let $\Q(i) = \{a + bi : a,b \in \Q \}$.
+
+\subsection{Part a)}
+
+\emph{Claim.} $\Q(i)$ is a proper subfield of $\C$.
+
+\begin{proof}
+  Clearly $\Q(i)$ is a strict subset of $\C$ since it contains the rationals in
+  $\C$ but lacks the irrationals. Then it suffices to prove that $\Q(i)$ is a
+  subfield of $\C$.
+
+  We first show that $\Q(i)$ is a subgroup of $\C$ under addition in $\C$. Let
+  $x = a + bi$ and $y = c + di$, where $a,b,c,d \in \Q$. Then
+  \begin{align*}
+    x + y
+    &= a + bi + c + di \\
+    &= a + c + i(b + d)\, .
+  \end{align*}
+  Since $a + c \in \Q$ and $b + d \in \Q$, $x + y \in \Q(i)$. Thus $\Q(i)$ is
+  closed under addition in $\C$. Now note that the additive identity $0$ in $\C$
+  is also in $\Q(i)$. Then note that $a + bi - a - bi = 0 = - a - bi + a
+  + bi$, so if $x \in \Q(i)$, the additive inverse is simply $-x$. Thus $\Q(i)$
+  is a subgroup of $\C$ under addition in $\C$.
+
+  Second, we must show that $\Q(i) - \{0\}$ is a subgroup of $\C - \{0\}$
+  under multiplication in $\C$. Consider the product
+  \begin{align*}
+    xy
+    &= (a + bi)(c + di) \\
+    &= ac + adi + bci - bd \\
+    &= ac - bd + i(ad + bc)\, .
+  \end{align*}
+  Then $xy \in \Q(i) - \{0\}$, and thus $\Q(i) - \{0\}$ is closed under
+  multiplication in $\C$. Now note that the multiplicative identity $1$ in $\C$
+  is also in $\Q(i)$. Now consider the multiplicative inverse of $x$,
+  \begin{align*}
+    x^{-1}
+    &= {1 \over x} \\
+    &= {1 \over a + bi} \\
+    &= {1 \over a + bi} \cdot {a - bi \over a - bi} \\
+    &= {a - bi \over a^2 + b^2} \\
+    &= {a \over a^2 + b^2} - {bi \over a^2 + b^2} \\
+    &= {a \over a^2 + b^2} - {b \over a^2 + b^2} \cdot i\, .
+  \end{align*}
+  Then for any $x \in \Q(i) - \{0\}$, $x^{-1} \in \Q(i) - \{0\}$. Thus $\Q(i) -
+  \{0\}$ is a subgroup of $\R - \{0\}$ under multiplication in $\R$.
+\end{proof}
+
+\subsection{Part b)}
+
+\emph{Claim.} $\Q(i)$ is the smallest subfield of $\C$ containing $i$.
+
+\begin{proof}
+  Let $F$ be a subfield of $\C$ containing $i$. Then $1,i \in F$, and since $F$
+  is an abelian subgroup under addition in $\C$, $F$ must contain $\Z(i)$. Since
+  $F - \{0\}$ is an abelian subgroup under multiplication in $\C$, $F$ must
+  contain multiplicative inverses for all elements of $\Z(i) - \{0\}$, so $F$
+  contains all elements of the form $1/a : a \in \Z(i) - \{0\}$. Then since $F$
+  is again an abelian subgroup under addition in $\C$, including elements of the
+  form $1/a : a \in \Z(i) - \{0\}$ implies that $F$ contains $\Q(i)$. Since any
+  subfield of $\Q(i)$ must contain $0, 1, i$ (and thus all $\Z(i)$), and their
+  inverses (and thus all $\Q(i)$), we can conclude that $\Q(i)$ has no proper
+  subfields. Thus $\Q(i)$ must be the smallest subfield of $\C$ containing $i$.
+\end{proof}
+
+\section{Exercise 17.22}
+
+Let $\Q(\sqrt 2) = \{a + b\sqrt 2 : a,b \in \Q\}$.
+
+\subsection{Part a)}
+
+\emph{Claim.} Let $a,b \in \Q$. Then $a + b\sqrt 2 = 0$ if and only if $a = b =
+0$.
+
+\begin{proof}
+  Assume $a = b =0$. Then
+  \begin{align*}
+    a + b \sqrt 2 &= 0 + 0 \cdot \sqrt 2 \\
+                  &= 0\, .
+  \end{align*}
+
+  Assume $a + b \sqrt 2 = 0$, and for the purpose of contradiction assume $a
+  \neq b \neq 0$. Then
+
+  \begin{align*}
+    &a + b\sqrt 2 = 0 \\ \Longleftrightarrow \quad
+    &a = -b \sqrt{2}\, .
+  \end{align*}
+  Then $a \notin \Q$ unless $b = 0$ or $b = \pm \sqrt 2$, but we have that $b \in \Q$
+  and $b \neq 0$, so we have found a contradiction. Thus $a = b = 0$.
+\end{proof}
+
+\subsection{Part b)}
+
+\emph{Claim.} $\Q(\sqrt 2)$ is a subfield of $\R$.
+
+\begin{proof}
+  Let $x = a + b \sqrt 2$ and $y = c + d \sqrt 2$ where $a,b,c,d \in \Q$. Then
+  \begin{align*}
+    x + y
+    &= a + b \sqrt 2 + c + d \sqrt 2 \\
+    &= a + c + \sqrt 2 (b + d)\, .
+  \end{align*}
+  Thus $x + y \in \Q(\sqrt 2)$, so $\Q(\sqrt 2)$ is closed under addition in
+  $\R$. Note that $0 \in \Q(\sqrt 2)$. Since $a + b \sqrt 2 - a -b \sqrt 2 = 0 =
+  -a - b \sqrt 2 + a + b \sqrt 2$, for any $x \in \Q(\sqrt 2)$ the additive
+  inverse is $-x \in \Q(\sqrt 2)$. Thus $\Q(\sqrt 2)$ is a subgroup of $\R$
+  under addition in $\R$.
+
+  Consider the product
+  \begin{align*}
+    xy
+    &= (a + b \sqrt 2)(c + d \sqrt 2) \\
+    &= ac + 2bd + \sqrt 2 (ad + bc)\, .
+  \end{align*}
+  Thus $xy \in \Q(\sqrt 2) - \{0\}$, so $\Q(\sqrt 2) - \{0\}$ is closed under
+  multiplication in $\R$. Note that $1 \in \Q(\sqrt 2)$. Now consider the
+  multiplicative inverse of $x$,
+  \begin{align*}
+    x^{-1}
+    &= {1 \over x} \\
+    &= {1 \over a + b \sqrt 2} \\
+    &= {1 \over a + b \sqrt 2} \cdot {a - b \sqrt 2 \over a - b \sqrt 2} \\
+    &= {a - b \sqrt 2 \over a^2 - 2b^2} \\
+    &= {a \over a^2 - 2b^2} - {b \sqrt 2 \over a^2 - 2b^2} \\
+    &= {a \over a^2 - 2b^2} - {b \over a^2 - 2b^2} \cdot \sqrt 2\, .
+  \end{align*}
+  Then for any $x \in \Q(\sqrt 2) - \{0\}$, $x^{-1} \in \Q(\sqrt 2) - \{0\}$.
+  Thus $\Q(\sqrt 2) - \{0\}$ is a subgroup of $\R - \{0\}$ under multiplication
+  in $\R$.
+\end{proof}
+
+\subsection{Part c)}
+
+\emph{Claim.} $\Q(\sqrt 2)$ is a proper subfield of $\R$.
+
+\begin{proof}
+  Since we have already proved that $\Q(\sqrt 2)$ is a subfield of $\R$, it
+  suffices to show that $\Q(\sqrt 2)$ is a strict subset of $\R$.
+
+  Assume for the purpose of contradiction that $\sqrt{3} \in \Q(\sqrt 2)$. Then
+  there exists $a,b \in \Q$ where
+  \begin{align*}
+    &a + b \sqrt 2 = \sqrt 3 \\ \Longleftrightarrow \quad
+    &\sqrt 3(a + b \sqrt 2) = \sqrt 3 \cdot \sqrt 3 \\ \Longleftrightarrow \quad
+    &a \sqrt 3 + b \sqrt 6 = 3 \\ \Longleftrightarrow \quad
+    &a (a + b \sqrt 2) + b \sqrt 2 = 3 \\ \Longleftrightarrow \quad
+    &a^2 + ab\sqrt 2 + b \sqrt 2 = 3 \\ \Longleftrightarrow \quad
+    & \sqrt 2 (ab + b) = 3 - a^2\, .
+  \end{align*}
+  Then on the right-hand side we have a rational expression, but on the
+  left-hand side we can only have a rational when $ab + b = 0$. Then $3 - a^2 =
+  0 \Rightarrow a^2 = 3 \Rightarrow a = \pm \sqrt 3$. But we have that $a \in
+  \Q$, thus we have found a contradiction.
+\end{proof}
+
+\subsection{Part d)}
+
+\emph{Claim.} $\Q(\sqrt 2)$ is a field lying strictly between $\Q$ and $\R$.
+
+\begin{proof}
+  We have already proved that $\Q(\sqrt 2)$ is a field, and we have proved the
+  $\Q(\sqrt 2)$ is a strict subset of $\R$. Clearly $\Q$ is a strict subset of
+  $\Q(\sqrt 2)$. Then $\Q(\sqrt 2)$ is a field lying strictly between $\Q$ and
+  $\R$.
+\end{proof}
+
+\subsection{Part e)}
+
+\emph{Claim.} $\Q(\sqrt 2)$ is the smallest subfield of $\R$ containing $\sqrt
+2$.
+
+\begin{proof}
+  Let $F$ be a subfield of $\R$ containing $\sqrt 2$. Then $1, \sqrt 2 \in F$,
+  and since $F$ is an abelian subgroup under addition in $\R$, $F$ must contain
+  $\Z(\sqrt 2)$. Since $F - \{0\}$ is an abelian subgroup under multiplication
+  in $\C - \{0\}$, $F$ must contain multiplicative inverses for all elements of
+  $\Z(\sqrt 2) - \{0\}$, so $F$ contains all elements of the form $1/a : a \in \Z(\sqrt
+  2) - \{0\}$. Then since $F$ is again an abelian subgroup under addition in
+  $\R$, including elements of the form $1/a : a \in \Z(\sqrt 2)$ implies that
+  $F$ contains $\Q(\sqrt 2)$. Since any subfield of $\Q(\sqrt 2)$ must contain
+  $0, 1, \sqrt 2$ (and thus all $\Z(\sqrt 2)$), and their inverses (and thus all
+  $\Q(\sqrt 2)$), we can conclude that $\Q(\sqrt 2)$ has no proper subfields.
+  Thus $\Q(\sqrt 2)$ must be the smallest subfield $\R$ containing $\sqrt 2$.
+\end{proof}
+
+\section{Exercise 23}
+
+Let $F$ be any subfield of $\C$ containing $\R$ as a proper subfield.
+
+\subsection{Part a)}
+
+\emph{Claim.} $i \in F$.
+
+\begin{proof}
+  Since $\R < F \leq \C$, there exists $x \in F$ such that $x \notin \R$ and $x
+  \in \C$. Then $x = a + bi$ for $a,b \in \R$, and since $x \notin \R$, $b \neq
+  0$. Since $F$ is a field, $x - a \in F$, and similarly $(x - a) / b \in F$.
+  Then since $i = (x - a) / b$, $i \in F$.
+\end{proof}
+
+\subsection{Part b)}
+
+\emph{Claim.} $F = \C$.
+
+\begin{proof}
+  We have that $F$ contains $\R \cup \{i\}$. Since $F$ is an abelian subgroup
+  under addition in $\C$, $F$ contains all elements of the form $nx : x \in F, n
+  \in \Z$. Furthermore, since $F$ is an abelian subgroup under multiplication in
+  $\C$, $F$ also contains all elements of the form $y^m : y \in F, m \in \Z$.
+  Since $F$ is closed under addition in $\C$, we have that $F$ contains all
+  elements of the form $nx + y^m : x,y \in F, n,m \in \Z$. Thus $F = \C$.
+\end{proof}
+
+\subsection{Part c)}
+
+\emph{Claim.} There are no fields lying strictly between the fields $\R$ and
+$\C$.
+
+\begin{proof}
+  Since any subfield of $\C$ containing $\R$ as a proper subfield must equal
+  $\C$, there are no fields lying strictly between the fields $\R$ and $\C$.
+\end{proof}
+
+\section{Exercise 19.5}
+
+\subsection{Part a)}
+
+\[
+\polylongdiv{X^5 - 2X^3 + 2X^2 - 3}{X - 1}\, .
+\]
+
+Thus the quotient is $X^4 + X^3 - X^2 + 1$ and the remainder is $-2$.
+
+\subsection{Part b)}
+
+\[
+\polylongdiv{X^5 - 2X^3 + 2X^2 - 3}{2X^3 - 1}\, .
+\]
+
+Thus the quotient is ${1 \over 2} X^2 - 1$ and the remainder is ${5 \over 2} X^2
+- 4$.
+
+\subsection{Part c)}
+
+The quotient is $0$ and the remainder is $2X^3 - 1$.
+
+\subsection{Part d)}
+
+The quotient is $X^2 + 1$ and the remainder is $X^2 + 1$.
+
+\subsection{Part e)}
+
+The quotient is $0$ and the remainder is $X^5 - 2X^3 + 2X - 3$.
+
+\section{Exercise 19.7}
+
+Let $R$ be a ring.
+
+\medskip
+\noindent
+\emph{Claim.} Multiplication in $R[X]$ distributes over addition in $R[X]$.
+
+\begin{proof}
+  Without left-distributing we have
+  \begin{align*}
+    \left( \sum_{n=0}^{< \infty} a_n X^n \right) \left( \sum_{n=0}^{< \infty} b_n X^n +
+    \sum_{n=0}^{< \infty} c_n X^n \right)
+    &= \left( \sum_{n=0}^{< \infty} a_n X^n \right) \sum_{n=0}^{< \infty}
+      (b_n + c_n) X^n \\
+    &= \sum_{n=0}^{< \infty} \left( \sum_{i+j=n} a_i(b_j +c_j) \right) X^n \, .
+  \end{align*}
+  With left-distributing we have
+  \begin{align*}
+    \left( \sum_{n=0}^{< \infty} a_n X^n \right) \left( \sum_{n=0}^{< \infty} b_n X^n +
+    \sum_{n=0}^{< \infty} c_n X^n \right)
+    &= \left( \sum_{n=0}^{< \infty} a_n X^n \right)
+      \left( \sum_{n=0}^{< \infty} b_n X^n \right) +
+      \left( \sum_{n=0}^{< \infty} a_n X^n \right)
+      \left( \sum_{n=0}^{< \infty} c_n X^n \right) \\
+    &= \sum_{n=0}^{< \infty} \left( \sum_{i+j=n} a_i b_j \right) X^n +
+      \sum_{n=0}^{< \infty} \left( \sum_{i+j=n} a_i c_j \right) X^n \\
+    &= \sum_{n=0}^{< \infty} \left( \sum_{i+j=n} a_i b_j + a_i c_j \right) X^n \\
+    &= \sum_{n=0}^{< \infty} \left( \sum_{i+j=n} a_i(b_j + c_j) \right) X^n\, .
+  \end{align*}
+
+  Without right-distributing we have
+  \begin{align*}
+    \left( \sum_{n=0}^{< \infty} b_n X^n + \sum_{n=0}^{< \infty} c_n X^n \right)
+    \sum_{n=0}^{< \infty} a_n X^n
+    &= \left( \sum_{n=0}^{< \infty} (b_n + c_n) X^n \right) \sum_{n=0}^{< \infty} a_n X^n \\
+    &= \sum_{n=0}^{< \infty} \left( \sum_{i+j=n} (b_i +c_i) a_j \right) X^n \, .
+  \end{align*}
+  With right-distributing we have
+  \begin{align*}
+    \left( \sum_{n=0}^{< \infty} b_n X^n + \sum_{n=0}^{< \infty} c_n X^n \right)
+    \sum_{n=0}^{< \infty} a_n X^n
+    &= \left( \sum_{n=0}^{< \infty} b_n X^n \right)
+      \left( \sum_{n=0}^{< \infty} a_n X^n \right) +
+      \left( \sum_{n=0}^{< \infty} c_n X^n \right)
+      \left( \sum_{n=0}^{< \infty} a_n X^n \right) \\
+    &= \sum_{n=0}^{< \infty} \left( \sum_{i+j=n}  b_i a_j \right) X^n +
+      \sum_{n=0}^{< \infty} \left( \sum_{i+j=n} c_i a_j \right) X^n \\
+    &= \sum_{n=0}^{< \infty} \left( \sum_{i+j=n} b_i a_j + c_i a_j \right) X^n \\
+    &= \sum_{n=0}^{< \infty} \left( \sum_{i+j=n} (b_i + c_i) a_j \right) X^n\, .
+  \end{align*}
+
+  Thus multiplication in $R[X]$ distributes over addition in $R[X]$.
+\end{proof}
+
+\noindent
+\emph{Claim.} Multiplication in $M_n(R)$ distributes over addition in $M_n(R)$.
+
+\begin{proof}
+  Without left-distributing we have
+  \begin{align*}
+    (a_{ij})((b_{ij}) + (c_{ij}))
+    &= (a_{ij})(b_{ij} + c_{ij}) \\
+    &= (d_{ij})
+  \end{align*}
+  where $d_{ij} = \sum_{k=1}^{n} a_{ik}(b_{kj} + c_{kj})$ for all $i$ and $j$.
+  With left-distributing we have
+  \begin{align*}
+    (a_{ij})((b_{ij}) + (c_{ij}))
+    &= (a_{ij})(b_{ij}) + (a_{ij})(c_{ij}) \\
+    &= (d_{ij}) + (e_{ij}) \\
+    &= (d_{ij} + e_{ij})
+  \end{align*}
+  where $d_{ij} = \sum_{k=1}^n a_{ik} b_{kj}$, and $e_{ij} = \sum_{k=1}^n a_{ik}
+  c_{kj}$ for all $i$ and $j$, so
+  \begin{align*}
+    (d_{ij} + e_{ij})
+    &= \sum_{k=1}^n a_{ik} b_{kj} + \sum_{k=1}^n a_{ik} c_{kj} \\
+    &= \sum_{k=1}^n a_{ik} b_{kj} + a_{ik} c_{kj} \\
+    &= \sum_{k=1}^n a_{ik} (b_{kj} + c_{kj})
+  \end{align*}
+  for all $i$ and $j$.
+
+  Without right-distributing we have
+  \begin{align*}
+    ((b_{ij}) + (c_{ij}))(a_{ij})
+    &= (b_{ij} + c_{ij})(a_{ij}) \\
+    &= (d_{ij})
+  \end{align*}
+  where $d_{ij} = \sum_{k=1}^n (b_{ik} + c_{ik}) a_{kj}$ for all $i$ and $j$.
+  With right-distributing we have
+  \begin{align*}
+    ((b_{ij}) + (c_{ij}))(a_{ij})
+    &= (b_{ij})(a_{ij}) + (c_{ij})(a_{ij}) \\
+    &= (d_{ij}) + (e_{ij}) \\
+    &= (d_{ij} + e_{ij})
+  \end{align*}
+  where $d_{ij} = \sum_{k=0}^n b_{ik} a_{kj}$, and $e_{ij} = \sum_{k=1}^n c_{ik}
+  a_{kj}$ for all $i$ and $j$, so
+  \begin{align*}
+    (d_{ij} + e_{ij})
+    &= \sum_{k=1}^n b_{ik} a_{kj} + \sum_{k=1}^n c_{ik} a_{kj} \\
+    &= \sum_{k=1}^n b_{ik} a_{kj} + c_{ik} a_{kj} \\
+    &= \sum_{k=1}^n (b_{ik} + c_{ik}) a_{kj}
+  \end{align*}
+  for all $i$ and $j$.
+
+  Thus multiplication in $M_n(R)$ distributes over addition in $M_n(R)$.
+\end{proof}
+
+\section{Exercise 19.12}
+
+\subsection{Part a)}
+
+\emph{Claim.} $1 + 2X$ is a unit in $\Z_4[X]$.
+
+\begin{proof}
+  Note that $1 + 2X + 3 + 2X = 0 = 3 + 2X + 1 + 2X$, so $3 + 2X$ is the additive
+  inverse of $1 + 2X$. Now note that $(1 + 2X)(1 + 2X) = 1$, so $1 + 2X$ is its
+  own multiplicative inverse. Since we have found both inverses in $\Z_4[X]$, we conclude
+  that $1 + 2X$ is a unit in $\Z_4[X]$.
+\end{proof}
+
+\noindent
+\emph{Claim.} $1 + 3X$ is a unit in $\Z_9[X]$.
+
+\begin{proof}
+  Note that $1 + 3X + 8 + 6X = 0 = 8 + 6X + 1 + 3X$, so $8 + 6X$ is the additive
+  inverse of $1 + 3X$. Now note that $(1 + 3X)(1 + 3X) = 1$, so $1 + 3X$ is its
+  own multiplicative inverse. Since we have found both inverses in $\Z_9[X]$, we
+  conclude that $1 + 3X$ is a unit in $\Z_9[X]$.
+\end{proof}
+
+\subsection{Part b)}
+
+\emph{Claim.} $1 + 3X$ is not a unit in $\Z_4[X]$.
+
+\begin{proof}
+  Assume for the purpose of contradiction that $1 + 3X$ is a unit in $\Z_4[X]$.
+  Then
+  \begin{align*}
+    (1 + 3X) \sum_{n=0}^{1} a_n X^n
+    &= 1 \\
+    &= \sum_{n=0}^{1} \left( \sum_{i+j=n} b_i a_j \right) X^n
+  \end{align*}
+  for some $\sum_{n=0}^{1} a_n X^n \in \Z_4[X]$ and $b_0 = 1$, $b_1 = 3$. (Note
+  that we can terminate our sum at $n = 1$ since the $1$ in $1 + 3X$ guarantees
+  that any $a_n X^n$ for $n > 1$ and $a_n \neq 0$ terms in the sum would then
+  appear on the right-hand side of our equation.) Then $b_0 a_0 = a_0 = 1$ and
+  $b_0 a_1 + b_1 a_0 = a_1 + 3 = 0$. Then $a_1 = 1$. But it is easy to verify
+  that $(1 + 3X)(1 + X) = 1 + 3X^2 \neq 1$, thus we have found a contradiction.
+\end{proof}
+
+\noindent
+\emph{Claim.} $1 + 2X$ is not a unit in $\Z_9[X]$.
+
+\begin{proof}
+  Assume for the purpose of contradiction that $1 + 2X$ is a unit in $\Z_9[X]$.
+  Then
+  \begin{align*}
+    (1 + 2X) \sum_{n=0}^{1} a_n X^n
+    &= 1 \\
+    &= \sum_{n=0}^{1} \left( \sum_{i+j=n} b_i a_j \right) X^n
+  \end{align*}
+  for some $\sum_{n=0}^1 a_n X^n \in \Z_9[X]$ and $b_0 = 1, b_1 = 2$. (Note that
+  we can terminate our sum at $n = 1$ since the $1$ in $1 + 2X$ guarantees that
+  any $a_n X^n$ for $n > 1$ and $a_n \neq 0$ terms in the sum would then appear
+  on the right-hand side of our equation.) Then $b_0 a_0 = a_0 = 1$ and $b_0 a_1
+  + b_1 a_0 = a_1 + 2 = 0$. Then $a_1 = 7$. But it is easy to verify that $(1 +
+  2X) (1 + 7X) = 1 + 5X \neq 1$, thus we have found a contradiction.
 \end{proof}
 
 \end{document}
 
-%  LocalWords:  subring quaternions
+%  LocalWords:  subring quaternions subfield subfields abelian
