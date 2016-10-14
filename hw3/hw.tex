@@ -3,6 +3,10 @@
 \title{Math 393: Homework 3}
 \author{Anthony Brice}
 
+% \geometry{showframe}%
+
+\renewcommand\plaintitle{}
+
 \usepackage[mathscr]{eucal}
 
 \newcommand{\GL}{\text{GL}}
@@ -128,7 +132,8 @@ Let $\Z[\sqrt 2] = \{a + b\sqrt 2 : a,b \in \Z \}$.
     &= a + c + (b + d)\sqrt 2\, .
   \end{align*}
   Thus $x + y \in \Z[\sqrt 2]$. Clearly $0 \in \Z[\sqrt 2]$, and we have
-  additive inverses since for any $a,b \in \Z$ we have $-a, -b \in \Z$.
+  additive inverses since for any $a,b \in \Z$ we have $-a, -b \in \Z$. Thus
+  $\Z[\sqrt 2]$ is a subgroup under addition in $\R$.
 
   Consider the element $1 + 0 \sqrt 2 = 1$. Then $1 \in \Z[\sqrt 2]$.
 
@@ -141,6 +146,10 @@ Let $\Z[\sqrt 2] = \{a + b\sqrt 2 : a,b \in \Z \}$.
     & = ac + 2bd + \sqrt 2(ad + bc)\, .
   \end{align*}
   Thus $xy \in \Z[\sqrt 2]$.
+
+  Since $\Z[\sqrt 2]$ is a subgroup under addition in $\R$, contains the
+  multiplicative identity in $\R$, and is closed under multiplication in $\R$,
+  we have that $\Z[\sqrt 2]$ is a subring of $\R$.
 \end{proof}
 
 \subsection{Part b)}
@@ -187,7 +196,8 @@ Let $\Z[\sqrt[3]{2}] = \{ a + b \sqrt[3]{2} + c \sqrt[3]{4} : a,b,c \in \Z \}$.
     &= a + e + \sqrt[3]{2}(b + f) + \sqrt[3]{4}(c + g)\, .
   \end{align*}
   So $x + y \in \Z[\sqrt[3]{2}]$. Clearly $0 \in \Z[\sqrt[3]{2}]$, and we have
-  additive inverses since for any $a,b,c \in \Z$ we have $-a,-b,-c \in \Z$.
+  additive inverses since for any $a,b,c \in \Z$ we have $-a,-b,-c \in \Z$. Thus
+  $\Z[\sqrt[3]{2}]$ is a subgroup under addition in $\R$.
 
   Consider $1 + 0\sqrt[3]{2} + 0\sqrt[3]{4} = 1$. Then $1 \in \Z[\sqrt[3]{2}]$.
 
@@ -200,6 +210,10 @@ Let $\Z[\sqrt[3]{2}] = \{ a + b \sqrt[3]{2} + c \sqrt[3]{4} : a,b,c \in \Z \}$.
     &= ae + 2(bg + cf) + \sqrt[3]{2} (af + be + 2cg) + \sqrt[3]{4} (ag + bf + ce)\, .
   \end{align*}
   So $xy \in \Z[\sqrt[3]{2}]$.
+
+  Since $\Z[\sqrt[3]{2}]$ is a subgroup under addition in $\R$, contains the
+  multiplicative identity in $\R$, and is closed under multiplication in $\R$,
+  we have that $\Z[\sqrt[3]{2}]$ is a subring of $\R$.
 \end{proof}
 
 \subsection{Part b)}
@@ -223,7 +237,8 @@ Let $\Z[\sqrt[3]{2}] = \{ a + b \sqrt[3]{2} + c \sqrt[3]{4} : a,b,c \in \Z \}$.
     & (a + b^2)\sqrt[3]{2} = 2 - ab\, .
   \end{align*}
   Then on the right-hand side we have an integer, but on the left-hand side we
-  can only have an integer when $a + b^2 = 0$. This leads to the following
+  can only have an integer when $a + b^2 = 0$ since no other $a + b^2 \in \Z$
+  can make $(a + b^2) \sqrt[3]{2}$ an integer. This leads to the following
   system of equations:
   \begin{IEEEeqnarray*}{c}
     a + b^2 = 0\, , \\
@@ -238,7 +253,7 @@ Let $\Z[\sqrt[3]{2}] = \{ a + b \sqrt[3]{2} + c \sqrt[3]{4} : a,b,c \in \Z \}$.
     -1 + {(-2)}^2 &\neq 0\, , \\
     -2 + {(-1)}^2 &\neq 0\, .
   \end{align*}
-  Thus $\sqrt[3]{4} \notin S$.
+Thus $\sqrt[3]{4} \notin S$.
 \end{proof}
 
 \subsection{Part c)}
@@ -534,9 +549,9 @@ all $a,b,c,d \in \R$ as elements of the ring $\H$ of quaternions.
   Let $a,b \in \Q$. Clearly $a + b \in \Q$, $0 \in \Q$, and for any $a \in \Q$, $-a
   \in \Q$. Then $\Q$ is a subgroup of $\R$ under addition in $\R$.
 
-  Similarly, $ab \in \Q$, $1 \in \Q$, and for any $a \in \Q - \{0\}$, $1/a \in
-  \Q - \{0\}$. Then $\Q - \{0\}$ is a subgroup of $\R - \{0\}$ under
-  multiplication in $\R$.
+  Let $a,b \in \Q - \{0\}$. Similarly, $ab \in \Q - \{0\}$, $1 \in \Q - \{0\}$,
+  and for any $a \in \Q - \{0\}$, $1/a \in \Q - \{0\}$. Then $\Q - \{0\}$ is a
+  subgroup of $\R - \{0\}$ under multiplication in $\R$.
 
   Thus $\Q$ is a subfield of $\R$, and since any subfield of $\R$ must contain
   $\Q$, it follows that $\Q$ is the smallest subfield of $\R$.
@@ -552,8 +567,8 @@ Let $\Q(i) = \{a + bi : a,b \in \Q \}$.
 
 \begin{proof}
   Clearly $\Q(i)$ is a strict subset of $\C$ since it contains the rationals in
-  $\C$ but lacks the irrationals. Then it suffices to prove that $\Q(i)$ is a
-  subfield of $\C$.
+  $\C$ but lacks at least any irrational in $\R$. Then it suffices to prove that
+  $\Q(i)$ is a subfield of $\C$.
 
   We first show that $\Q(i)$ is a subgroup of $\C$ under addition in $\C$. Let
   $x = a + bi$ and $y = c + di$, where $a,b,c,d \in \Q$. Then
@@ -565,11 +580,11 @@ Let $\Q(i) = \{a + bi : a,b \in \Q \}$.
   Since $a + c \in \Q$ and $b + d \in \Q$, $x + y \in \Q(i)$. Thus $\Q(i)$ is
   closed under addition in $\C$. Now note that the additive identity $0$ in $\C$
   is also in $\Q(i)$. Then note that $a + bi - a - bi = 0 = - a - bi + a
-  + bi$, so if $x \in \Q(i)$, the additive inverse is simply $-x$. Thus $\Q(i)$
+  + bi$, so if $x \in \Q(i)$, the additive inverse is simply $-x \in \Q(i)$. Thus $\Q(i)$
   is a subgroup of $\C$ under addition in $\C$.
 
-  Second, we must show that $\Q(i) - \{0\}$ is a subgroup of $\C - \{0\}$
-  under multiplication in $\C$. Consider the product
+  Second, we must show that $\Q(i) - \{0\}$ is a subgroup of $\C - \{0\}$ under
+  multiplication in $\C$. Let $x,y \in \Q(i) - \{0\}$ and consider the product
   \begin{align*}
     xy
     &= (a + bi)(c + di) \\
@@ -590,6 +605,11 @@ Let $\Q(i) = \{a + bi : a,b \in \Q \}$.
   \end{align*}
   Then for any $x \in \Q(i) - \{0\}$, $x^{-1} \in \Q(i) - \{0\}$. Thus $\Q(i) -
   \{0\}$ is a subgroup of $\R - \{0\}$ under multiplication in $\R$.
+
+  Since $\Q(i)$ is a subgroup pf $\C$ under addition in $\C$, and $\Q(i) -
+  \{0\}$ is a subgroup of $\C - \{0\}$ under multiplication in $\C$, we have
+  that $\Q(i)$ is a subfield of $\C$, and since $\Q(i)$ is a strict subset of
+  $\C$, we conclude that $\Q(i)$ is a proper subfield of $\C$.
 \end{proof}
 
 \subsection{Part b)}
@@ -604,9 +624,10 @@ Let $\Q(i) = \{a + bi : a,b \in \Q \}$.
   contains all elements of the form $1/a : a \in \Z(i) - \{0\}$. Then since $F$
   is again an abelian subgroup under addition in $\C$, including elements of the
   form $1/a : a \in \Z(i) - \{0\}$ implies that $F$ contains $\Q(i)$. Since any
-  subfield of $\Q(i)$ must contain $0, 1, i$ (and thus all $\Z(i)$), and their
-  inverses (and thus all $\Q(i)$), we can conclude that $\Q(i)$ has no proper
-  subfields. Thus $\Q(i)$ must be the smallest subfield of $\C$ containing $i$.
+  subfield of $\C$ containing $i$ must contain $\Q(i)$, and since we have
+  already proved that $\Q(i)$ is a subfield of $\C$ clearly containing $i$, we
+  can conclude that $\Q(i)$ must be the smallest subfield of $\C$ containing
+  $i$.
 \end{proof}
 
 \section{Exercise 17.22}
@@ -674,6 +695,10 @@ Let $\Q(\sqrt 2) = \{a + b\sqrt 2 : a,b \in \Q\}$.
   Then for any $x \in \Q(\sqrt 2) - \{0\}$, $x^{-1} \in \Q(\sqrt 2) - \{0\}$.
   Thus $\Q(\sqrt 2) - \{0\}$ is a subgroup of $\R - \{0\}$ under multiplication
   in $\R$.
+
+  Since $\Q(\sqrt 2)$ is subgroup of $\R$ under addition in $\R$, and $\Q(\sqrt
+  2) - \{0\}$ is a subgroup of $\R - \{0\}$ under multiplication in $\R$, we
+  conclude that $\Q(\sqrt 2)$ is a subfield of $\R$.
 \end{proof}
 
 \subsection{Part c)}
@@ -695,9 +720,13 @@ Let $\Q(\sqrt 2) = \{a + b\sqrt 2 : a,b \in \Q\}$.
     & \sqrt 2 (ab + b) = 3 - a^2\, .
   \end{align*}
   Then on the right-hand side we have a rational expression, but on the
-  left-hand side we can only have a rational when $ab + b = 0$. Then $3 - a^2 =
-  0 \Rightarrow a^2 = 3 \Rightarrow a = \pm \sqrt 3$. But we have that $a \in
-  \Q$, thus we have found a contradiction.
+  left-hand side we can only have a rational when $ab + b = 0$ since no other
+  $ab + b \in \Q$ can make $\sqrt 2 (ab + b)$ a rational expression. Then $3 -
+  a^2 = 0 \Rightarrow a^2 = 3 \Rightarrow a = \pm \sqrt 3$. But we have that $a
+  \in \Q$, thus we have found a contradiction.
+
+  Thus $\sqrt 3 \notin \Q(\sqrt 2)$, and since $\Q(\sqrt 2)$ is a subfield of
+  $\R$, we conclude that $\Q(\sqrt 2)$ is a proper subfield of $\R$.
 \end{proof}
 
 \subsection{Part d)}
@@ -797,7 +826,8 @@ The quotient is $X^2 + 1$ and the remainder is $X^2 + 1$.
 
 \subsection{Part e)}
 
-The quotient is $0$ and the remainder is $X^5 - 2X^3 + 2X - 3$.
+The quotient is $3X^2 + 1$ and the remainder is $3X^2 + 2X + 1$.\marginnote{Parts d) and
+e) are worked out on the last page.}
 
 \section{Exercise 19.7}
 
@@ -973,4 +1003,4 @@ Let $R$ be a ring.
 
 \end{document}
 
-%  LocalWords:  subring quaternions subfield subfields abelian
+%  LocalWords:  subring quaternions subfield subfields abelian monoid
