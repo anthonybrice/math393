@@ -238,7 +238,7 @@ Let $\Z[\sqrt[3]{2}] = \{ a + b \sqrt[3]{2} + c \sqrt[3]{4} : a,b,c \in \Z \}$.
   \end{align*}
   Then on the right-hand side we have an integer, but on the left-hand side we
   can only have an integer when $a + b^2 = 0$ since no other $a + b^2 \in \Z$
-  can make $(a + b^2) \sqrt[3]{2}$ an integer. This leads to the following
+  satisfies the condition $(a + b^2) \sqrt[3]{2} \in \Z$. This leads to the following
   system of equations:
   \begin{IEEEeqnarray*}{c}
     a + b^2 = 0\, , \\
@@ -721,7 +721,7 @@ Let $\Q(\sqrt 2) = \{a + b\sqrt 2 : a,b \in \Q\}$.
   \end{align*}
   Then on the right-hand side we have a rational expression, but on the
   left-hand side we can only have a rational when $ab + b = 0$ since no other
-  $ab + b \in \Q$ can make $\sqrt 2 (ab + b)$ a rational expression. Then $3 -
+  $ab + b \in \Q$ satisfies the condition $\sqrt 2 (ab + b) \in \Q$. Then $3 -
   a^2 = 0 \Rightarrow a^2 = 3 \Rightarrow a = \pm \sqrt 3$. But we have that $a
   \in \Q$, thus we have found a contradiction.
 
@@ -946,20 +946,16 @@ Let $R$ be a ring.
 \emph{Claim.} $1 + 2X$ is a unit in $\Z_4[X]$.
 
 \begin{proof}
-  Note that $1 + 2X + 3 + 2X = 0 = 3 + 2X + 1 + 2X$, so $3 + 2X$ is the additive
-  inverse of $1 + 2X$. Now note that $(1 + 2X)(1 + 2X) = 1$, so $1 + 2X$ is its
-  own multiplicative inverse. Since we have found both inverses in $\Z_4[X]$, we conclude
-  that $1 + 2X$ is a unit in $\Z_4[X]$.
+  Note that $(1 + 2X)(1 + 2X) = 1$, so $1 + 2X$ is its own multiplicative
+  inverse. Then $1 + 2X$ is a unit in $\Z_4[X]$.
 \end{proof}
 
 \noindent
 \emph{Claim.} $1 + 3X$ is a unit in $\Z_9[X]$.
 
 \begin{proof}
-  Note that $1 + 3X + 8 + 6X = 0 = 8 + 6X + 1 + 3X$, so $8 + 6X$ is the additive
-  inverse of $1 + 3X$. Now note that $(1 + 3X)(1 + 3X) = 1$, so $1 + 3X$ is its
-  own multiplicative inverse. Since we have found both inverses in $\Z_9[X]$, we
-  conclude that $1 + 3X$ is a unit in $\Z_9[X]$.
+  Note that $(1 + 3X)(1 + 3X) = 1$, so $1 + 3X$ is its own multiplicative
+  inverse. Then $1 + 3X$ is a unit in $\Z_9[X]$.
 \end{proof}
 
 \subsection{Part b)}
