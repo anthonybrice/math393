@@ -304,19 +304,22 @@ isomorphism from $G$ to itself.
 c_b = c_{ab}$ for all $a,b \in G$.
 
 \begin{proof}
-  Let $b,x,y \in G$. Then
+  Let $b,x \in G$. Then
   \begin{align*}
-    c_{ab}(xy)
-    &= (ab)^{-1} xy ab \\
-    &= b^{-1} a^{-1} xy ab \\
-    &=
+    c_{ab}(x)
+    &= {(ab)}^{-1} x ab \\
+    &= b^{-1} a^{-1} x ab \\
+    &= b^{-1}(a^{-1} x a) b \\
+    &= c_b(c_a(x))
   \end{align*}
 
   \begin{align*}
-    (c_a \circ c_b)(xy)
-    &= c_a(c_b(xy)) \\
-    &= c_a(b^{-1} xy b) \\
-    &= a^{-1} b^{-1} xy b a
+    (c_a \circ c_b)(x)
+    &= c_a(c_b(x)) \\
+    &= c_a(b^{-1} x b) \\
+    &= a^{-1} b^{-1} x b a \\
+    &= {(ba)}^{-1} x ba \\
+    &= c_{ba}(x)
   \end{align*}
 \end{proof}
 
@@ -375,7 +378,7 @@ a group under composition of functions.
 \end{proof}
 
 \noindent
-\Claim The automorphisms of $Z_4$ are the identity function and the function $f
+\Claim The automorphisms of $\Z_4$ are the identity function and the function $f
 : \Z_4 \to \Z_4$ defined by
 \[
   f(x) =
@@ -400,8 +403,8 @@ a group under composition of functions.
   \begin{align*}
     &f(0 + 1) = f(1) = 3 = 0 + 3 = f(0) + f(1)\, , \\
     &f(0 + 3) = f(3) = 1 = 0 + 1 = f(0) + f(3)\, , \\
-    &f(2 + 1) = f(3) = 1 = 3 + 2 = f(2) + f(1)\, , \\
-    &f(2 + 3) = f(1) = 3 = 3 + 1 = f(2) + f(3)\, .
+    &f(2 + 1) = f(3) = 1 = 2 + 3 = f(2) + f(1)\, , \\
+    &f(2 + 3) = f(1) = 3 = 2 + 1 = f(2) + f(3)\, .
   \end{align*}
   Thus $f$ is operation preserving.
 
@@ -414,7 +417,7 @@ a group under composition of functions.
       x + 1 &\text{otherwise.}
     \end{cases}
   \]
-  Note that $g(1 + 3) = g(0) = 0 \neq g(1) + g(3) = 2 + 3 = 1$. Thus $g$ is not
+  Note that $g(1 + 3) = g(0) = 0 \neq g(1) + g(3) = 2 + 0 = 2$. Thus $g$ is not
   operation preserving.
 \end{proof}
 
@@ -425,34 +428,78 @@ a group under composition of functions.
 n$; that is, $f(x) = f(1) \cdot_n x$ for all $x \in \Z_n$.
 
 \begin{proof}
-  Note that for any $\Z_n$, $1$ is a generator. We first prove that any
-  isomorphism of groups must map any generator in the domain to a generator in the
-  codomain.
+  % Note that for any $\Z_n$, $1$ is a generator. We first prove that any
+  % isomorphism of groups must map any generator in the domain to a generator in
+  % the codomain.
+  %
+  % Let $f$ be an isomorphism from group $G$ to group $G'$, and let $x$ be a
+  % generator in $G$. Then clearly $\langle f(x) \rangle \subset G'$. Now let $y
+  % \in G'$. Since $f$ is onto, there exists $a \in G$ such that $f(a) = y$. Since
+  % $G = \langle x \rangle$, $a = x^k$ for some $k \in \Z$. Then $f(a) = f(x^k)$,
+  % so $y \in \langle f(x) \rangle$, thus $G' \subset \langle f(x) \rangle$. Since
+  % $\langle f(x) \rangle \subset G'$ and $G' \subset \langle f(x) \rangle$,
+  % $\langle f(x) \rangle = G'$, so $f(x)$ is a generator in $G'$. Thus any
+  % isomorphism of groups must map any generator in the domain to a generator in
+  % the codomain.
+  %
+  Let $f$ be an automorphism of $\Z_n$. Then $f(1) = 1m = m$ for some $m \in
+  \Z_n$. Then for any $k \in \Z_n$, we have that $f(k) = f(1k) = f(1_1 + 1_2 +
+  \cdots + 1_k) = {f(1)}_1 + {f(1)}_2 + \cdots + {f(1)}_k = k f(1) = km$, so $f$
+  is completely determined by where it maps $1$. Thus $f$ is equal to
+  multiplication by $f(1)$ mod $n$.
+\end{proof}
+
+\subsection{Part d)}
+
+\Claim Let $f$ be an automorphism of $\Z_n$. Then $f(1)$ is a unit mod $n$.
+
+\begin{proof}
+  We will first prove the stronger claim that any isomorphism of groups must map
+  a generator in the domain to a generator in the codomain.
 
   Let $f$ be an isomorphism from group $G$ to group $G'$, and let $x$ be a
   generator in $G$. Then clearly $\langle f(x) \rangle \subset G'$. Now let $y
   \in G'$. Since $f$ is onto, there exists $a \in G$ such that $f(a) = y$. Since
-  $G = \langle x \rangle$, $a = x^k$ for some $k \in \Z$. Then $f(a) = f(x^k) =
-  {(f(x))}^k = y$, so $G' \subset \langle f(x) \rangle$. Since $\langle f(x)
-  \rangle \subset G'$ and $G' \subset \langle f(x) \rangle$, $\langle f(x)
-  \rangle = G'$, so $f(x)$ is a generator in $G'$. Thus any isomorphism of
-  groups must map any generator in the domain to a generator in the codomain.
+  $G = \langle x \rangle$, $a = x^k$ for some $k \in \Z$. Then $f(a) = f(x^k)$,
+  so $y \in \langle f(x) \rangle$, thus $G' \subset \langle f(x) \rangle$. Since
+  $\langle f(x) \rangle \subset G'$ and $G' \subset \langle f(x) \rangle$,
+  $\langle f(x) \rangle = G'$, so $f(x)$ is a generator in $G'$. Thus any
+  isomorphism of groups must map any generator in the domain to a generator in
+  the codomain.
 
-  Consider the base case $n = 1$. Then our group is the trivial group, and the
-  only automorphism is the identity function. Then for all $x \in \Z_1$,
-  \begin{align*}
-    f(x)
-    &= f(1) \cdot_1 x \\
-    &= 0 \cdot_1 x \\
-    &= 0\, .
-  \end{align*}
-  Thus the claim is true when $n = 1$.
+  Thus since $f$ is automorphism and $1$ is a generator, then $f(1)$ is a
+  generator in $\Z_n$. Since $f(1)$ must be a generator and $\Z_n$ is finite,
+  there exists $k \in \Z_n$ such that $kf(1) = 1$. Thus $f(1)$ is a unit mod $n$.
+\end{proof}
 
-  Assume the claim is true when $n = k$ for some $k \geq 1$. Then consider the
-  case when $n = k + 1$. Then for all $x \in \Z_{k+1}$,
+\subsection{Part e)}
+
+\Claim $\Aut(\Z_n)$ is isomorphic to $U_n$ for any positive integer $n$, where
+$U_n = \{ a \in \Z_n : \gcd(a,n) = 1\}$ is the group of units mod $n$.
+
+\begin{proof}
+  For any $u \in U_n$, define $h(u) = i \mapsto ui$. Then $h(u) : \Z_n \to
+  \Z_n$, and we will show $h(u)$ is an automorphism.
+
+  Let $h : \Aut(\Z_n) \to U_n$ be defined by $h(f) = f(1)$. Since $f(1)$ maps to
+  a generator for any automorphism $f$ of $\Z_n$, we have that $\gcd(f(1),n) =
+  1$. Since each distinct mapping of $1$ gives a distinct automorphism by the
+  fundamental theorem of arithmetic, we have that $h$ is one-to-one, and is thus
+  bijective because $U_n$ is finite. Then for $f,g \in \Aut(\Z_n)$, let $f(1) =
+  m$ and $g(1) = k$ for some $k,m \in \Z_n$ where $k,m$ are relatively prime to
+  $n$.
   \begin{align*}
-    f(x) = f(1) \cdot_{k+1} x
+    h(f \circ g)
+    &= h(f(g(1))) \\
+    &= h(f(k)) \\
+    &= h()
   \end{align*}
+  % Let $f,g$ be automorphisms of $\Z_n$. Then $f(1) = 1m$ and $g(1) = 1k$ for
+  % some $m,k \in \Z_n$ where $m,k$ are relatively prime to $n$. Then $f \circ g
+  % (1) = 1mn$. Thus composition of automorphisms in $\Z_n$ corresponds to
+  % multiplication of the values to which they map $1$. This multiplication is
+  % necessarily unique for distinct automorphisms by the fundamental theorem of
+  % arithmetic.
 \end{proof}
 
 \end{document}
