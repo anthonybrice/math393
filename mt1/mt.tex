@@ -1,0 +1,133 @@
+\documentclass{abrice}
+
+\title{Math 393: Midterm 1}
+\author{Anthony Brice}
+
+\renewcommand\plaintitle{}
+
+\usepackage[mathscr]{eucal}
+\usepackage{xspace}
+
+\newcommand{\GL}{\text{GL}}
+\newcommand{\M}{\text{M}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\Q}{\mathbb{Q}}
+\renewcommand{\C}{\mathbb{C}}
+\renewcommand{\H}{\mathbb{H}}
+\renewcommand{\P}{\mathscr{P}}
+\newcommand{\T}{\mathbb{T}}
+
+\newcommand{\Claim}{\noindent\emph{Claim.}\xspace}%
+
+\usepackage{amsthm}
+
+\usepackage{polynom}
+
+\begin{document}
+\maketitle
+
+\section{Problem 2}
+
+Let $\GL_n^+(\R) = \{A \in \M_n(\R) : \det A > 0\}$ be the set of all $n \times
+n$ matrices with real number entries and positive determinant.
+
+\subsection{Part a)}
+
+\Claim $\GL_n^+(\R)$ is not a subgroup of the group $\M_n(\R)$.
+
+\begin{proof}
+  Assume for the purpose of contradiction that $\GL_n^+(\R)$ is a subgroup of
+  $\M_n(\R)$. Then for any matrix $A \in \GL_n^+(\R)$, we have $-A \in
+  \GL_n^+(\R)$ since the group operation of $\M_n(\R)$ is addition. Let $A \in
+  \GL_n^+(\R)$ be a $1 \times 1$ matrix with sole entry $1$. Then $\det
+  A = 1$, and $\det(-A) = -1$, so $-A \notin \GL_n^+(\R)$, thus we have found a
+  contradiction.
+\end{proof}
+
+\subsection{Part b)}
+
+\Claim $\GL_n^+(\R)$ is a subgroup of $\GL_n(\R)$.
+
+\begin{proof}
+  Let $A,B \in \GL_n^+(\R)$. Then $AB$ is clearly a real-valued square matrix,
+  and since $\det(AB) = \det(A) \det(B)$, then the determinant of $AB$ must be
+  positive, so $AB \in \GL_n^+(\R)$. We clearly have the identity element $I \in
+  \GL_n^+(\R)$. Now consider $A^{-1}$, which must exist since $\det A \neq 0$,
+  and so is also clearly a real-valued square matrix. Since $\det(A^{-1}) =
+  1/\det A$, then the determinant of $A^{-1}$ must be positive, so $A^{-1} \in
+  \GL_n^+(\R)$. Thus $\GL_n^+(\R)$ is a subgroup of $\GL_n(\R)$.
+\end{proof}
+
+\section{Problem 3}
+
+Let $\Z[\sqrt 5] = \{a + b \sqrt 5 : a,b \in \Z\}$.
+
+\subsection{Part a)}
+
+\Claim $\Z[\sqrt 5]$ is an integral domain.
+
+\begin{proof}
+  We will show that $\Z[\sqrt 5]$ is a subring of the field $\R$. We will first
+  show that $\Z[\sqrt 5]$ is a subgroup $\R$ under addition. Let $x = a +
+  b \sqrt 5$ and $y = c + d \sqrt 5$ where $a,b,c,d \in \Z$. So $x,y \in
+  \Z[\sqrt 5]$. Then
+  \begin{align*}
+    x + y
+    &= a + b \sqrt 5 + c + d \sqrt 5 \\
+    &= (a + c \in \Z) + (b + c \in \Z) \sqrt 5\, ,
+  \end{align*}
+  so $x + y \in \Z \sqrt 5$. Clearly the additive identity $0 \in \Z[\sqrt 5]$.
+  Now consider that for any $x \in \Z[\sqrt 5]$, we clearly have $-x \in
+  \Z[\sqrt 5]$, so have all additive inverses. Then $\Z[\sqrt 5]$ is a subgroup
+  of $\R$ under addition.
+
+  Clearly the multiplicative identity $1 \in \Z[\sqrt 5]$.
+
+  Consider the product
+  \begin{align*}
+    xy
+    &= (a + b \sqrt 5)(c + d \sqrt 5) \\
+    &= ac + ad \sqrt 5 + bc \sqrt 5 + 5 bd \\
+    &= (ac + 5bd \in \Z) + (ad + bc \in \Z)\sqrt 5\, ,
+  \end{align*}
+  so $xy \in \Z[\sqrt 5]$.
+
+  Thus $\Z[\sqrt 5]$ is a subring of the field $\R$, so $\Z[\sqrt 5]$ is an
+  integral domain.
+\end{proof}
+
+\subsection{Part c)}
+
+\Claim $9 + 4 \sqrt 5$ is a unit in $\Z[\sqrt 5]$.
+
+\begin{proof}
+  \begin{align*}
+    (9 + 4 \sqrt 5)(9 - 4 \sqrt 5)
+    &= 81 - 45 \sqrt 5 + 45 \sqrt 5 - 80 \\
+    &= 1\, .
+  \end{align*}
+\end{proof}
+
+\section{Problem 4}
+
+Let $a$ and $b$ be elements of a group $G$.
+
+\subsection{Part c)}
+
+\Claim Let $ab = ba$. Then $\abs{ab} \leq \abs{a}\abs{b}$.
+
+\begin{proof}
+  Since $ab = ba$,
+  \begin{align*}
+    \abs{ab}
+    &= \abs{\langle ab \rangle} \\
+    &= \abs{\{ a^n b^m : n,m \in \Z \}} \\
+    &\leq \abs{\{a^n : n \in \Z\}} \cdot \abs{\{b^m : m \in \Z\}} \\
+    &= \abs{\langle a \rangle} \cdot \abs{\langle b \rangle} \\
+    &= \abs{a} \abs{b}\, . \qedhere
+  \end{align*}
+\end{proof}
+\end{document}
+
+%  LocalWords:  subring
